@@ -2294,3 +2294,66 @@ Processing by SessionsController#new as HTML
   [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
 Completed 200 OK in 29ms (Views: 28.2ms | ActiveRecord: 0.2ms)
 >>>>>>> 2e84c38a8c9bfc9b11b0f72b17229f52d5bf55ad
+
+
+Started GET "/" for ::1 at 2015-09-14 16:44:08 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mRating Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 1]]
+  [1m[35mRating Load (0.2ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 3]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 3]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 5]]
+  Rendered games/index.erb within layouts/application (83.4ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+Completed 200 OK in 1345ms (Views: 1325.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/signup" for ::1 at 2015-09-14 16:44:15 -0500
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (95.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+Completed 200 OK in 141ms (Views: 136.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users" for ::1 at 2015-09-14 16:44:42 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1ENlpZAIQMnJSl2qMpJGKPgdHignuDELY2lu2SwYHKBuQQeIGW6DzrllyFLdBOi/KwxQXAyiSLyLU0xxob0Nmw==", "user"=>{"username"=>"blanche", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'blanche' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["username", "blanche"], ["password_digest", "$2a$10$Mnjwzfo2PMLFjgwSi5Roze0IADLKo2PaCBIGq2eiV9slYnwPMctSm"], ["created_at", "2015-09-14 21:44:42.433401"], ["updated_at", "2015-09-14 21:44:42.433401"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 83ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/users/1" for ::1 at 2015-09-14 16:44:42 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 48ms (Views: 46.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-14 17:05:30 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mRating Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 1]]
+  [1m[35mRating Load (0.2ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 3]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 3]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 5]]
+  Rendered games/index.erb within layouts/application (88.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 412ms (Views: 391.1ms | ActiveRecord: 2.1ms)

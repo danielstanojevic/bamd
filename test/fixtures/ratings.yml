@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comment: MyString
+  stars: 1
+  game_id: 1
+  author_id: 1
+
+two:
+  comment: MyString
+  stars: 1
+  game_id: 1
+  author_id: 1

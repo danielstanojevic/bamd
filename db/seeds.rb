@@ -5,3 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+  a = Game.create(name:"Alextown", description:"It's green!")
+  b = Game.create(name:"BlancheCity", description:"Is blue!")
+  d = Game.create(name:"Danville", description:"HOOSIERS!")
+  m = Game.create(name:"Megalopolis", description:"SUPER!!")
+  bamd = Game.create(name:"BAMD", description:"Great for teams! Da bomb!")
+
+  coop = Mechanic.create(description:"co-op")
+  cb = Mechanic.create(description:"city-building")
+
+  a.mechanics << coop
+  b.mechanics << cb
+  m.mechanics << coop
+  m.mechanics << cb
+  d.mechanics << cb
+  bamd.mechanics << coop
+  bamd.mechanics << cb
+

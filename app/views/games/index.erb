@@ -1,0 +1,9 @@
+<div>
+  <h1>Games!</h1>
+    <% @games.each do |game| %>
+    <h2><%= game.name %></h2>
+    <h3><%= game.avg_user_rating %></h3>
+    <% end %>
+</div>
+
+

@@ -23,3 +23,8 @@
   bamd.mechanics << coop
   bamd.mechanics << cb
 
+a.ratings << Rating.create(stars: 2, comment:"This is stuff.")
+b.ratings << Rating.create(stars: 2, comment: "this is a game???")
+m.ratings << Rating.create(stars: 3, comment: "here is a thing maybe I dunno")
+d.ratings << Rating.create(stars: 2, comment: "things and unicorns")
+a.ratings << Rating.create(stars: 5, comment: "WOAH!")

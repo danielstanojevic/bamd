@@ -16,9 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
-
-  get '/mechanics' => 'mechanics#index'
-  get '/mechanics/:id' => 'mechanics#show'
+  resources :mechanics
 
   resources :friendships
 
@@ -26,11 +24,6 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   get '/signup' => 'users#new'
-
-
-
-
-
 
 
 

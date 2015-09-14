@@ -1,0 +1,13 @@
+<div class="container">
+<h1>Create an account to manage your games</h1>
+  <div id="signup-form" >
+    <%= form_for(@user) do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username, placeholder: "DannyBoy" %>
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: "********" %>
+      <%= f.submit "Create Account" %>
+    <% end %>
+  </div>
+  <%= link_to 'Already a member?', login_path %>
+</div>

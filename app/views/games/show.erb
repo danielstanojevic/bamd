@@ -1,0 +1,38 @@
+<div class="container">
+  <div>
+    <h1><%= @game.name %></h1>
+    <br>
+    <h3><%= @game.description %></h3>
+    <br>
+      <%= @game.mechanics.each do |mechanic| %>
+    <h4><a href='mechanics_path(mechanic)'><%= mechanic.description %></h4>
+      <br>
+      <% end %>
+  </div>
+  <br>
+   <div>
+    <h3>Friends who own this game</h3>
+    <% @user.friends.each do |friend| %>
+      <% if friend.owned_games.include(@game) %>
+      <%= friend.username %>
+      <%end%>
+    <%end%>
+  </div>
+  <br>
+  <div>
+    <h3>Community score</h3><%= @game.avg_user_rating %>
+     <h3>Friends score</h3><%= @game.avg_friend_score %>
+  </div>
+
+  <br>
+  <div>
+    <h2>REVIEWS!</h2>
+    <% @game.ratings.each do |rating| %>
+      <div>
+      <%= rating.stars %>
+      <br>
+      <%= rating.comment %>
+    </div>
+    <%end%>
+  </div>
+</div>

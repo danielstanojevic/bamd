@@ -16,9 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
-
-  get '/mechanics' => 'mechanics#index'
-  get '/mechanics/:id' => 'mechanics#show'
+  resources :mechanics
 
   resources :friendships
 

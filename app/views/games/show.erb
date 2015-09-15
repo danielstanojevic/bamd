@@ -1,18 +1,24 @@
 <div class="container">
   <div id="game-name">
     <h1><%= @game.name %></h1>
-    <br>
     <h2>Description:</h2>
     <h3><%= @game.description %></h3>
-    <br>
+  </div>
+  <div id="picture">
+
+    <img src= <%="/#{@game.name}.jpeg"  %>>
+    <div id="scores">
+    <h3>Community Score: <%= @game.avg_user_rating %> Stars</h3>
+    <h3>Friend Score:</h3>
+  </div>
+  </div>
+  <div id="mechanics">
     <h2>Mechanics:</h2>
       <% @game.mechanics.each do |mechanic| %>
     <h4> <%=link_to "#{mechanic.description}", mechanic_path(mechanic)%> </h4>
       <% end %>
   </div>
-  <div id="picture">
-    <h1>PICTURE GOES HERE</h1>
-  </div>
+
   <br>
    <div id="owner-friends">
     <h3>Friends Who Own This Game:</h3>
@@ -23,20 +29,15 @@
     <%end%>
   </div>
   <br>
-  <div id="scores">
-    <h3>Community Score:</h3><%= @game.avg_user_rating %>
-    <h3>Friend Score:</h3>
-  </div>
+
 
   <br>
   <div id="review-container">
     <h2>REVIEWS!</h2>
     <% @game.ratings.each do |rating| %>
       <div class="review">
-        <br>
-      <%= rating.stars %>
-      <br>
-      <%= rating.comment %>
+      <h4>Rating: <%= rating.stars %> Stars</h3>
+      <h4>Review: <%= rating.comment %></h3>
     </div>
     <%end%>
   </div>

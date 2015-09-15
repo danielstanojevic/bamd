@@ -10,16 +10,16 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  def confirmed_friends
-    self.friendships.where(confirmed: true).map { |friendship| User.find(friendship.to_id) }
+  def confirmed_friendships
+    self.friendships.where(confirmed: true)#.map { |friendship| User.find(friendship.to_id) }
   end
 
   def friend_requests
-    self.friendship_requesters.where(confirmed: !true)
+    Friendship.where(confirmed: nil, to_id: self.id)#.map { |friendship| friendship.requester }
   end
 
   def pending_requests
-    self.friendship_receivers.where(confirmed: !true)
+    self.friendships.where(confirmed: nil)#.map { |friendship| friendship.receiver }
   end
 
   def self.search(query)

@@ -17,10 +17,10 @@
 //= require_tree .
 
 $(document).ready(function(){
-  $(".fa-star").hover( function(){
-      $(".fa-star").addClass("fa-spin")
+  $("#gold_star").hover( function(){
+      $(this).addClass("fa-spin")
   }, function(){
-      $(".fa-star").removeClass("fa-spin")
+      $(this).removeClass("fa-spin")
   });
 
 

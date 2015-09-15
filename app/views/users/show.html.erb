@@ -17,14 +17,20 @@
   <div class="user-friendships">
     <h2>My Friends</h2>
     <ul>
-      <% current_user.confirmed_friends.each do |friend| %>
-        <li><%= friend.username %></li>
+      <% current_user.confirmed_friendships.each do |friendship| %>
+        <li><%= friendship.receiver.username %></li>
       <% end %>
     </ul>
     <h2>Friend Requests</h2>
     <ul>
       <% current_user.friend_requests.each do |request| %>
-        <li><%= request.username %></li>
+        <li><%= request.requester.username %>  <%= link_to "Accept", friendship_path(request), method: :put %></li>
+      <% end %>
+    </ul>
+    <h2>Pending Requests</h2>
+    <ul>
+      <% current_user.pending_requests.each do |request| %>
+        <li><%= request.receiver.username %></li>
       <% end %>
     </ul>
   </div>

@@ -31,11 +31,13 @@
 }
 
 th {
+  padding-top: 10px;
 	/*	text-align: center;*/
 }
 
 #games-index td {
-	padding: 10px;
+	padding: 20px;
+  padding-top: 10px;
 
 }
 
@@ -52,9 +54,9 @@ ul {
 }
 .game-table {
   border: 1px solid black;
-  width: 400px;
+  width: 500px;
   background-color: #ecf0f1;
-  border-radius: 15%;
+  border-radius: 10%;
   margin: auto;
 }
 

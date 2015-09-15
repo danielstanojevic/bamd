@@ -72,13 +72,9 @@ Migrating to CreateFriendships (20150914185941)
   [1m[36mRating Load (0.3ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
 
 
-<<<<<<< HEAD
-Started GET "/" for ::1 at 2015-09-14 15:28:27 -0500
-  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
-=======
+
 Started GET "/" for ::1 at 2015-09-14 16:02:24 -0500
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
->>>>>>> 2e84c38a8c9bfc9b11b0f72b17229f52d5bf55ad
 
 ActionController::RoutingError (uninitialized constant GamesController):
   activesupport (4.2.0) lib/active_support/inflector/methods.rb:261:in `const_get'
@@ -10077,6 +10073,7 @@ Processing by MechanicsController#index as HTML
   Rendered mechanics/index.html.erb within layouts/application (2.0ms)
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
 Completed 200 OK in 60ms (Views: 58.9ms | ActiveRecord: 0.3ms)
+<<<<<<< HEAD
 
 
 Started GET "/" for ::1 at 2015-09-15 09:39:10 -0500
@@ -10974,6 +10971,347 @@ AbstractController::ActionNotFound (The action 'update' could not be found for F
   actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
   actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
   actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+=======
+  [1m[36m (2.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (3.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateGames (20150914185555)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185555"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to CreateRatings (20150914185700)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" varchar, "stars" integer, "game_id" integer, "author_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185700"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreatePurchases (20150914185730)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "purchases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185730"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateMechanics (20150914185817)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185817"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateGameMechanics (20150914185850)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "game_mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mechanic_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185850"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateUsers (20150914185915)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_username" ON "users" ("username")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150914185915"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateFriendships (20150914185941)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "friendships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "from_id" integer, "to_id" integer, "confirmed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150914185941"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_username' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_username' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Alextown"], ["description", "It's green!"], ["created_at", "2015-09-15 15:08:00.094670"], ["updated_at", "2015-09-15 15:08:00.094670"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "BlancheCity"], ["description", "Is blue!"], ["created_at", "2015-09-15 15:08:00.100192"], ["updated_at", "2015-09-15 15:08:00.100192"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Danville"], ["description", "HOOSIERS!"], ["created_at", "2015-09-15 15:08:00.104890"], ["updated_at", "2015-09-15 15:08:00.104890"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Megalopolis"], ["description", "SUPER!!"], ["created_at", "2015-09-15 15:08:00.107446"], ["updated_at", "2015-09-15 15:08:00.107446"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "BAMD"], ["description", "Great for teams! Da bomb!"], ["created_at", "2015-09-15 15:08:00.110254"], ["updated_at", "2015-09-15 15:08:00.110254"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "The Settlers of Catan"], ["description", "Build, Trade, BEAT YOUR FRIENDS."], ["created_at", "2015-09-15 15:08:00.112800"], ["updated_at", "2015-09-15 15:08:00.112800"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Munchkin"], ["description", "BACKSTAB YOUR PUNK ASS FRIENDS."], ["created_at", "2015-09-15 15:08:00.115440"], ["updated_at", "2015-09-15 15:08:00.115440"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Wereworlf"], ["description", "Find the wolves, save the village!"], ["created_at", "2015-09-15 15:08:00.118078"], ["updated_at", "2015-09-15 15:08:00.118078"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Guillotine"], ["description", "French Revolution! Beheadings! Laughs!"], ["created_at", "2015-09-15 15:08:00.120653"], ["updated_at", "2015-09-15 15:08:00.120653"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Legendary"], ["description", "Be a superhero from the marvel universe!"], ["created_at", "2015-09-15 15:08:00.123249"], ["updated_at", "2015-09-15 15:08:00.123249"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Hobbit"], ["description", "Can you live until second breakfast???"], ["created_at", "2015-09-15 15:08:00.125930"], ["updated_at", "2015-09-15 15:08:00.125930"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Ascension"], ["description", "Made by some magic the gathering dudes."], ["created_at", "2015-09-15 15:08:00.128582"], ["updated_at", "2015-09-15 15:08:00.128582"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Clue"], ["description", "The family classic where you hunt a murderer!"], ["created_at", "2015-09-15 15:08:00.131205"], ["updated_at", "2015-09-15 15:08:00.131205"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Hanabi"], ["description", "Don't blow your hands off!"], ["created_at", "2015-09-15 15:08:00.133577"], ["updated_at", "2015-09-15 15:08:00.133577"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "games" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Tsuro"], ["description", "Follow the path less traveled."], ["created_at", "2015-09-15 15:08:00.136171"], ["updated_at", "2015-09-15 15:08:00.136171"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Co-Op"], ["created_at", "2015-09-15 15:08:00.145257"], ["updated_at", "2015-09-15 15:08:00.145257"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "City-Building"], ["created_at", "2015-09-15 15:08:00.148209"], ["updated_at", "2015-09-15 15:08:00.148209"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Area/Territory Control"], ["created_at", "2015-09-15 15:08:00.150738"], ["updated_at", "2015-09-15 15:08:00.150738"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Auction/Bidding"], ["created_at", "2015-09-15 15:08:00.153413"], ["updated_at", "2015-09-15 15:08:00.153413"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Card Drafting"], ["created_at", "2015-09-15 15:08:00.157090"], ["updated_at", "2015-09-15 15:08:00.157090"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Deck Building"], ["created_at", "2015-09-15 15:08:00.160527"], ["updated_at", "2015-09-15 15:08:00.160527"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Dexterity"], ["created_at", "2015-09-15 15:08:00.163183"], ["updated_at", "2015-09-15 15:08:00.163183"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Economics"], ["created_at", "2015-09-15 15:08:00.165828"], ["updated_at", "2015-09-15 15:08:00.165828"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Fighting"], ["created_at", "2015-09-15 15:08:00.168548"], ["updated_at", "2015-09-15 15:08:00.168548"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Negotiation"], ["created_at", "2015-09-15 15:08:00.171369"], ["updated_at", "2015-09-15 15:08:00.171369"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Partnership"], ["created_at", "2015-09-15 15:08:00.174231"], ["updated_at", "2015-09-15 15:08:00.174231"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Resource Management"], ["created_at", "2015-09-15 15:08:00.177212"], ["updated_at", "2015-09-15 15:08:00.177212"]]
+  [1m[35m (1.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Role Playing"], ["created_at", "2015-09-15 15:08:00.180733"], ["updated_at", "2015-09-15 15:08:00.180733"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Set Collection"], ["created_at", "2015-09-15 15:08:00.183331"], ["updated_at", "2015-09-15 15:08:00.183331"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Tile Placement"], ["created_at", "2015-09-15 15:08:00.186503"], ["updated_at", "2015-09-15 15:08:00.186503"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "mechanics" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Secret Traitor"], ["created_at", "2015-09-15 15:08:00.189066"], ["updated_at", "2015-09-15 15:08:00.189066"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 6], ["mechanic_id", 12], ["created_at", "2015-09-15 15:08:00.213196"], ["updated_at", "2015-09-15 15:08:00.213196"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 6], ["mechanic_id", 15], ["created_at", "2015-09-15 15:08:00.217872"], ["updated_at", "2015-09-15 15:08:00.217872"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 6], ["mechanic_id", 8], ["created_at", "2015-09-15 15:08:00.221596"], ["updated_at", "2015-09-15 15:08:00.221596"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 6], ["mechanic_id", 3], ["created_at", "2015-09-15 15:08:00.225030"], ["updated_at", "2015-09-15 15:08:00.225030"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 6], ["mechanic_id", 10], ["created_at", "2015-09-15 15:08:00.229902"], ["updated_at", "2015-09-15 15:08:00.229902"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 7], ["mechanic_id", 6], ["created_at", "2015-09-15 15:08:00.234005"], ["updated_at", "2015-09-15 15:08:00.234005"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 7], ["mechanic_id", 9], ["created_at", "2015-09-15 15:08:00.237708"], ["updated_at", "2015-09-15 15:08:00.237708"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 7], ["mechanic_id", 11], ["created_at", "2015-09-15 15:08:00.240968"], ["updated_at", "2015-09-15 15:08:00.240968"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 7], ["mechanic_id", 1], ["created_at", "2015-09-15 15:08:00.244343"], ["updated_at", "2015-09-15 15:08:00.244343"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 7], ["mechanic_id", 10], ["created_at", "2015-09-15 15:08:00.247736"], ["updated_at", "2015-09-15 15:08:00.247736"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 8], ["mechanic_id", 16], ["created_at", "2015-09-15 15:08:00.251507"], ["updated_at", "2015-09-15 15:08:00.251507"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 8], ["mechanic_id", 13], ["created_at", "2015-09-15 15:08:00.255124"], ["updated_at", "2015-09-15 15:08:00.255124"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 9], ["mechanic_id", 5], ["created_at", "2015-09-15 15:08:00.258847"], ["updated_at", "2015-09-15 15:08:00.258847"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 9], ["mechanic_id", 14], ["created_at", "2015-09-15 15:08:00.262148"], ["updated_at", "2015-09-15 15:08:00.262148"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 10], ["mechanic_id", 6], ["created_at", "2015-09-15 15:08:00.266265"], ["updated_at", "2015-09-15 15:08:00.266265"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 10], ["mechanic_id", 1], ["created_at", "2015-09-15 15:08:00.269821"], ["updated_at", "2015-09-15 15:08:00.269821"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 10], ["mechanic_id", 9], ["created_at", "2015-09-15 15:08:00.273008"], ["updated_at", "2015-09-15 15:08:00.273008"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 11], ["mechanic_id", 6], ["created_at", "2015-09-15 15:08:00.276731"], ["updated_at", "2015-09-15 15:08:00.276731"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 12], ["mechanic_id", 6], ["created_at", "2015-09-15 15:08:00.280726"], ["updated_at", "2015-09-15 15:08:00.280726"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 12], ["mechanic_id", 9], ["created_at", "2015-09-15 15:08:00.284114"], ["updated_at", "2015-09-15 15:08:00.284114"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 12], ["mechanic_id", 12], ["created_at", "2015-09-15 15:08:00.287649"], ["updated_at", "2015-09-15 15:08:00.287649"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 13], ["mechanic_id", 16], ["created_at", "2015-09-15 15:08:00.291488"], ["updated_at", "2015-09-15 15:08:00.291488"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 13], ["mechanic_id", 13], ["created_at", "2015-09-15 15:08:00.294781"], ["updated_at", "2015-09-15 15:08:00.294781"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 14], ["mechanic_id", 1], ["created_at", "2015-09-15 15:08:00.298569"], ["updated_at", "2015-09-15 15:08:00.298569"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 14], ["mechanic_id", 11], ["created_at", "2015-09-15 15:08:00.302259"], ["updated_at", "2015-09-15 15:08:00.302259"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 14], ["mechanic_id", 14], ["created_at", "2015-09-15 15:08:00.305629"], ["updated_at", "2015-09-15 15:08:00.305629"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 15], ["mechanic_id", 15], ["created_at", "2015-09-15 15:08:00.309755"], ["updated_at", "2015-09-15 15:08:00.309755"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 15], ["mechanic_id", 3], ["created_at", "2015-09-15 15:08:00.313341"], ["updated_at", "2015-09-15 15:08:00.313341"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 1], ["mechanic_id", 1], ["created_at", "2015-09-15 15:08:00.317213"], ["updated_at", "2015-09-15 15:08:00.317213"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 2], ["mechanic_id", 2], ["created_at", "2015-09-15 15:08:00.321065"], ["updated_at", "2015-09-15 15:08:00.321065"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 4], ["mechanic_id", 1], ["created_at", "2015-09-15 15:08:00.366244"], ["updated_at", "2015-09-15 15:08:00.366244"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 4], ["mechanic_id", 2], ["created_at", "2015-09-15 15:08:00.370122"], ["updated_at", "2015-09-15 15:08:00.370122"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 3], ["mechanic_id", 2], ["created_at", "2015-09-15 15:08:00.374023"], ["updated_at", "2015-09-15 15:08:00.374023"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["game_id", 5], ["mechanic_id", 1], ["created_at", "2015-09-15 15:08:00.379213"], ["updated_at", "2015-09-15 15:08:00.379213"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "game_mechanics" ("game_id", "mechanic_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["game_id", 5], ["mechanic_id", 2], ["created_at", "2015-09-15 15:08:00.382968"], ["updated_at", "2015-09-15 15:08:00.382968"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "ratings" ("stars", "comment", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["stars", 2], ["comment", "This is stuff."], ["created_at", "2015-09-15 15:08:00.398332"], ["updated_at", "2015-09-15 15:08:00.398332"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "ratings" SET "game_id" = ?, "updated_at" = ? WHERE "ratings"."id" = ?  [["game_id", 1], ["updated_at", "2015-09-15 15:08:00.402902"], ["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ratings" ("stars", "comment", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["stars", 2], ["comment", "this is a game???"], ["created_at", "2015-09-15 15:08:00.454936"], ["updated_at", "2015-09-15 15:08:00.454936"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "ratings" SET "game_id" = ?, "updated_at" = ? WHERE "ratings"."id" = ?  [["game_id", 2], ["updated_at", "2015-09-15 15:08:00.457952"], ["id", 2]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ratings" ("stars", "comment", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["stars", 3], ["comment", "here is a thing maybe I dunno"], ["created_at", "2015-09-15 15:08:00.461217"], ["updated_at", "2015-09-15 15:08:00.461217"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "ratings" SET "game_id" = ?, "updated_at" = ? WHERE "ratings"."id" = ?  [["game_id", 4], ["updated_at", "2015-09-15 15:08:00.464023"], ["id", 3]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "ratings" ("stars", "comment", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["stars", 2], ["comment", "things and unicorns"], ["created_at", "2015-09-15 15:08:00.467353"], ["updated_at", "2015-09-15 15:08:00.467353"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "ratings" SET "game_id" = ?, "updated_at" = ? WHERE "ratings"."id" = ?  [["game_id", 3], ["updated_at", "2015-09-15 15:08:00.470952"], ["id", 4]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "ratings" ("stars", "comment", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["stars", 5], ["comment", "WOAH!"], ["created_at", "2015-09-15 15:08:00.473793"], ["updated_at", "2015-09-15 15:08:00.473793"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "ratings" SET "game_id" = ?, "updated_at" = ? WHERE "ratings"."id" = ?  [["game_id", 1], ["updated_at", "2015-09-15 15:08:00.477089"], ["id", 5]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for ::1 at 2015-09-15 10:08:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.2ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (120.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 513ms (Views: 492.4ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/games/6" for ::1 at 2015-09-15 10:08:19 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mGame Load (0.2ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 6]]
+  [1m[35mMechanic Load (0.2ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 6]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 6]]
+  Rendered games/show.erb within layouts/application (21.8ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 82ms (Views: 75.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/The" for ::1 at 2015-09-15 10:08:19 -0500
+
+ActionController::RoutingError (No route matches [GET] "/The"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+>>>>>>> master
   web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
   actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
   railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
@@ -10992,6 +11330,7 @@ AbstractController::ActionNotFound (The action 'update' could not be found for F
   railties (4.2.0) lib/rails/engine.rb:518:in `call'
   railties (4.2.0) lib/rails/application.rb:164:in `call'
   rack (1.6.4) lib/rack/lock.rb:17:in `call'
+<<<<<<< HEAD
   rack (1.6.4) lib/rack/content_length.rb:15:in `call'
   rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
   /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
@@ -11325,6 +11664,55 @@ ActionView::MissingTemplate (Missing template friendships/update, application/up
   actionpack (4.2.0) lib/action_dispatch/middleware/reloader.rb:73:in `call'
   actionpack (4.2.0) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
   actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+=======
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (68.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (114.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (14.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (31.6ms)
+
+
+Started GET "/mechanics/10" for ::1 at 2015-09-15 10:08:22 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mMechanic Load (0.2ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 10]]
+  Rendered mechanics/show.html.erb within layouts/application (5.9ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 65ms (Views: 62.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/games/7" for ::1 at 2015-09-15 10:08:23 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 7]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 7]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 7]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 7]]
+  Rendered games/show.erb within layouts/application (3.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 62ms (Views: 59.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/Munchkin.jpeg" for ::1 at 2015-09-15 10:08:23 -0500
+
+ActionController::RoutingError (No route matches [GET] "/Munchkin.jpeg"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
   web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
   actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
   railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
@@ -11350,6 +11738,96 @@ ActionView::MissingTemplate (Missing template friendships/update, application/up
   /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
 
 
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (67.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (109.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (16.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (32.6ms)
+
+
+Started GET "/mechanics/1" for ::1 at 2015-09-15 10:08:25 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 1]]
+  Rendered mechanics/show.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 53ms (Views: 51.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games/1" for ::1 at 2015-09-15 10:08:26 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 1]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 1]]
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?[0m  [["game_id", 1]]
+  Rendered games/show.erb within layouts/application (3.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 60ms (Views: 58.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mechanics/1" for ::1 at 2015-09-15 10:08:27 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 1]]
+  Rendered mechanics/show.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 126ms (Views: 124.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/games/10" for ::1 at 2015-09-15 10:08:29 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 10]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 10]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 10]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 10]]
+  Rendered games/show.erb within layouts/application (3.4ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 53ms (Views: 51.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/Legendary.jpeg" for ::1 at 2015-09-15 10:08:29 -0500
+
+ActionController::RoutingError (No route matches [GET] "/Legendary.jpeg"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+>>>>>>> master
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+<<<<<<< HEAD
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.4ms)
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
@@ -12705,3 +13183,1158 @@ Processing by GamesController#show as HTML
   Rendered games/show.erb within layouts/application (16.2ms)
   [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
 Completed 200 OK in 69ms (Views: 66.6ms | ActiveRecord: 0.8ms)
+=======
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (44.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (14.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (32.0ms)
+
+
+Started GET "/mechanics/6" for ::1 at 2015-09-15 10:08:30 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 6]]
+  Rendered mechanics/show.html.erb within layouts/application (1.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 58ms (Views: 56.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games/11" for ::1 at 2015-09-15 10:08:31 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 11]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 11]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 11]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 11]]
+  Rendered games/show.erb within layouts/application (2.9ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 121ms (Views: 119.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/Hobbit.jpeg" for ::1 at 2015-09-15 10:08:32 -0500
+
+ActionController::RoutingError (No route matches [GET] "/Hobbit.jpeg"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (43.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (14.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (32.2ms)
+
+
+Started GET "/mechanics/6" for ::1 at 2015-09-15 10:08:37 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 6]]
+  Rendered mechanics/show.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 58ms (Views: 56.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:08:39 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (29.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 187ms (Views: 183.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/mechanics" for ::1 at 2015-09-15 10:08:40 -0500
+Processing by MechanicsController#index as HTML
+  [1m[35mMechanic Load (0.2ms)[0m  SELECT "mechanics".* FROM "mechanics"  ORDER BY created_at DESC
+  Rendered mechanics/index.html.erb within layouts/application (3.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 55ms (Views: 53.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/mechanics?utf8=%E2%9C%93&search=Deck" for ::1 at 2015-09-15 10:08:46 -0500
+Processing by MechanicsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"Deck"}
+  [1m[35mMechanic Load (0.2ms)[0m  SELECT "mechanics".* FROM "mechanics" WHERE (description like '%Deck')  ORDER BY created_at DESC
+  Rendered mechanics/index.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 58ms (Views: 56.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/mechanics?utf8=%E2%9C%93&search=Deck+Building" for ::1 at 2015-09-15 10:08:51 -0500
+Processing by MechanicsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"Deck Building"}
+  [1m[35mMechanic Load (0.2ms)[0m  SELECT "mechanics".* FROM "mechanics" WHERE (description like '%Deck Building')  ORDER BY created_at DESC
+  Rendered mechanics/index.html.erb within layouts/application (1.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 131ms (Views: 129.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/mechanics?utf8=%E2%9C%93&search=deck+building" for ::1 at 2015-09-15 10:08:57 -0500
+Processing by MechanicsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"deck building"}
+  [1m[35mMechanic Load (0.3ms)[0m  SELECT "mechanics".* FROM "mechanics" WHERE (description like '%deck building')  ORDER BY created_at DESC
+  Rendered mechanics/index.html.erb within layouts/application (1.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 56ms (Views: 54.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/mechanics?utf8=%E2%9C%93&search=deck+building" for ::1 at 2015-09-15 10:08:59 -0500
+Processing by MechanicsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"deck building"}
+  [1m[35mMechanic Load (0.2ms)[0m  SELECT "mechanics".* FROM "mechanics" WHERE (description like '%deck building')  ORDER BY created_at DESC
+  Rendered mechanics/index.html.erb within layouts/application (1.2ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 54ms (Views: 53.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/games.self-0ea2275e40723f019e13b8a6c9f138eca094598a271e86a7f5cd64a3b3f24c47.css?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/bootstrap.self-c68c406b70db1115478355392ee8e55e46903052ef2acc9b83a09aa57ea2c0d1.css?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/mechanics.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/application.self-f4d41ca0ab078fe7b49ca93335fe0ec99c2ad39e0eb0e5aefc57883122fc9459.css?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/games.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/mechanics.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/assets/application.self-b870f4765c2fcbf8cabec8478e3e32aa02ac855d9f609c451d170b187ee785a3.js?body=1" for ::1 at 2015-09-15 10:09:00 -0500
+
+
+Started GET "/mechanics?utf8=%E2%9C%93&search=deck+building" for ::1 at 2015-09-15 10:09:01 -0500
+Processing by MechanicsController#index as HTML
+  Parameters: {"utf8"=>"✓", "search"=>"deck building"}
+  [1m[35mMechanic Load (0.2ms)[0m  SELECT "mechanics".* FROM "mechanics" WHERE (description like '%deck building')  ORDER BY created_at DESC
+  Rendered mechanics/index.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 53ms (Views: 51.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/mechanics" for ::1 at 2015-09-15 10:09:04 -0500
+Processing by MechanicsController#index as HTML
+  [1m[35mMechanic Load (0.2ms)[0m  SELECT "mechanics".* FROM "mechanics"  ORDER BY created_at DESC
+  Rendered mechanics/index.html.erb within layouts/application (2.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 117ms (Views: 116.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:09:06 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (23.2ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 72ms (Views: 69.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:09:59 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (24.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 167ms (Views: 164.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/mechanics.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/bootstrap.self-c68c406b70db1115478355392ee8e55e46903052ef2acc9b83a09aa57ea2c0d1.css?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/games.self-0ea2275e40723f019e13b8a6c9f138eca094598a271e86a7f5cd64a3b3f24c47.css?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/application.self-7861d09cc5e89f55d7097ccd8d779b854e707e759d3b768556a878f144c33eeb.css?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/games.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/mechanics.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/assets/application.self-b870f4765c2fcbf8cabec8478e3e32aa02ac855d9f609c451d170b187ee785a3.js?body=1" for ::1 at 2015-09-15 10:09:59 -0500
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:10:10 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (24.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 171ms (Views: 168.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/application.self-c3e206719e768fa5e603504266c7cd7f82c2743d0f3ed82116eca7a8a24f3f09.css?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/games.self-0ea2275e40723f019e13b8a6c9f138eca094598a271e86a7f5cd64a3b3f24c47.css?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/mechanics.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/bootstrap.self-c68c406b70db1115478355392ee8e55e46903052ef2acc9b83a09aa57ea2c0d1.css?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/games.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/mechanics.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/assets/application.self-b870f4765c2fcbf8cabec8478e3e32aa02ac855d9f609c451d170b187ee785a3.js?body=1" for ::1 at 2015-09-15 10:10:10 -0500
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:10:21 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (23.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 168ms (Views: 165.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/application.self-b4e9b46fa7ef4b4b5a790bda603f12565aa65500104502ec3ce2eba5639db9ce.css?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/games.self-0ea2275e40723f019e13b8a6c9f138eca094598a271e86a7f5cd64a3b3f24c47.css?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/mechanics.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/bootstrap.self-c68c406b70db1115478355392ee8e55e46903052ef2acc9b83a09aa57ea2c0d1.css?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/games.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/mechanics.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/assets/application.self-b870f4765c2fcbf8cabec8478e3e32aa02ac855d9f609c451d170b187ee785a3.js?body=1" for ::1 at 2015-09-15 10:10:21 -0500
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:10:41 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.2ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.2ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (26.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 169ms (Views: 166.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/games.self-0ea2275e40723f019e13b8a6c9f138eca094598a271e86a7f5cd64a3b3f24c47.css?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/bootstrap.self-c68c406b70db1115478355392ee8e55e46903052ef2acc9b83a09aa57ea2c0d1.css?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/mechanics.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/application.self-d43262f08c3ceb78fac7148ee5cd46051520302bbf01b13eeb3958dc291ed832.css?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/games.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/mechanics.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/application.self-b870f4765c2fcbf8cabec8478e3e32aa02ac855d9f609c451d170b187ee785a3.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-15 10:10:42 -0500
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:10:47 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.3ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (29.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 177ms (Views: 173.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/assets/games.self-0ea2275e40723f019e13b8a6c9f138eca094598a271e86a7f5cd64a3b3f24c47.css?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/bootstrap.self-c68c406b70db1115478355392ee8e55e46903052ef2acc9b83a09aa57ea2c0d1.css?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/mechanics.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/application.self-ccfba7860b39779c2644a15a06da29c242a78db5b4f34d3585ebdc3f20a933d4.css?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/games.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/mechanics.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/assets/application.self-b870f4765c2fcbf8cabec8478e3e32aa02ac855d9f609c451d170b187ee785a3.js?body=1" for ::1 at 2015-09-15 10:10:47 -0500
+
+
+Started GET "/games" for ::1 at 2015-09-15 10:11:12 -0500
+Processing by GamesController#index as HTML
+  [1m[35mGame Load (0.3ms)[0m  SELECT "games".* FROM "games"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 1]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 2]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 3]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 4]]
+  [1m[35mRating Load (0.1ms)[0m  SELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?  [["game_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 12]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 13]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 14]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mRating Exists (0.1ms)[0m  SELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1  [["game_id", 15]]
+  Rendered games/index.html.erb within layouts/application (26.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 170ms (Views: 167.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/ratings.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/games.self-0ea2275e40723f019e13b8a6c9f138eca094598a271e86a7f5cd64a3b3f24c47.css?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/mechanics.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/application.self-8321b46d657bc6ec2e3ca2f0b19beec119d43bd3f3aa4cc88282a8e47a5e4e94.css?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/bootstrap.self-c68c406b70db1115478355392ee8e55e46903052ef2acc9b83a09aa57ea2c0d1.css?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/games.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/mechanics.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/application.self-b870f4765c2fcbf8cabec8478e3e32aa02ac855d9f609c451d170b187ee785a3.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/assets/ratings.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2015-09-15 10:11:12 -0500
+
+
+Started GET "/games/6" for ::1 at 2015-09-15 10:11:24 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mGame Load (0.2ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 6]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 6]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 6]]
+  Rendered games/show.erb within layouts/application (3.4ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 136ms (Views: 134.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/The" for ::1 at 2015-09-15 10:11:24 -0500
+
+ActionController::RoutingError (No route matches [GET] "/The"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (39.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (16.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (34.3ms)
+
+
+Started GET "/mechanics/8" for ::1 at 2015-09-15 10:11:27 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 8]]
+  Rendered mechanics/show.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 51ms (Views: 49.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games/6" for ::1 at 2015-09-15 10:11:28 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 6]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 6]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 6]]
+  Rendered games/show.erb within layouts/application (3.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 125ms (Views: 123.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/The" for ::1 at 2015-09-15 10:11:28 -0500
+
+ActionController::RoutingError (No route matches [GET] "/The"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (41.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (16.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (36.8ms)
+
+
+Started GET "/mechanics/12" for ::1 at 2015-09-15 10:11:29 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 12]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 12]]
+  Rendered mechanics/show.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 52ms (Views: 50.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games/12" for ::1 at 2015-09-15 10:11:31 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 12]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 12]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 12]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 12]]
+  Rendered games/show.erb within layouts/application (3.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 55ms (Views: 53.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/Ascension.jpeg" for ::1 at 2015-09-15 10:11:31 -0500
+
+ActionController::RoutingError (No route matches [GET] "/Ascension.jpeg"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (42.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (14.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (31.0ms)
+
+
+Started GET "/mechanics/6" for ::1 at 2015-09-15 10:11:32 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 6]]
+  Rendered mechanics/show.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 54ms (Views: 52.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games/11" for ::1 at 2015-09-15 10:11:33 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 11]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 11]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 11]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 11]]
+  Rendered games/show.erb within layouts/application (3.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 53ms (Views: 51.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/Hobbit.jpeg" for ::1 at 2015-09-15 10:11:33 -0500
+
+ActionController::RoutingError (No route matches [GET] "/Hobbit.jpeg"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (69.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (105.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (14.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (31.3ms)
+
+
+Started GET "/mechanics" for ::1 at 2015-09-15 10:11:34 -0500
+Processing by MechanicsController#index as HTML
+  [1m[36mMechanic Load (0.2ms)[0m  [1mSELECT "mechanics".* FROM "mechanics"  ORDER BY created_at DESC[0m
+  Rendered mechanics/index.html.erb within layouts/application (2.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 54ms (Views: 52.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/mechanics/13" for ::1 at 2015-09-15 10:11:47 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 13]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 13]]
+  Rendered mechanics/show.html.erb within layouts/application (1.6ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 51ms (Views: 50.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/games/8" for ::1 at 2015-09-15 10:11:48 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 8]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 8]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 8]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 8]]
+  Rendered games/show.erb within layouts/application (2.9ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 55ms (Views: 53.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/Wereworlf.jpeg" for ::1 at 2015-09-15 10:11:48 -0500
+
+ActionController::RoutingError (No route matches [GET] "/Wereworlf.jpeg"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (54.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (15.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (35.1ms)
+
+
+Started GET "/mechanics/16" for ::1 at 2015-09-15 10:11:50 -0500
+Processing by MechanicsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mMechanic Load (0.1ms)[0m  [1mSELECT  "mechanics".* FROM "mechanics" WHERE "mechanics"."id" = ? LIMIT 1[0m  [["id", 16]]
+  [1m[35mGame Load (0.1ms)[0m  SELECT "games".* FROM "games" INNER JOIN "game_mechanics" ON "games"."id" = "game_mechanics"."game_id" WHERE "game_mechanics"."mechanic_id" = ?  [["mechanic_id", 16]]
+  Rendered mechanics/show.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 53ms (Views: 50.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/games/13" for ::1 at 2015-09-15 10:11:52 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mGame Load (0.1ms)[0m  SELECT  "games".* FROM "games" WHERE "games"."id" = ? LIMIT 1  [["id", 13]]
+  [1m[36mRating Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "ratings" WHERE "ratings"."game_id" = ? LIMIT 1[0m  [["game_id", 13]]
+  [1m[35mMechanic Load (0.1ms)[0m  SELECT "mechanics".* FROM "mechanics" INNER JOIN "game_mechanics" ON "mechanics"."id" = "game_mechanics"."mechanic_id" WHERE "game_mechanics"."game_id" = ?  [["game_id", 13]]
+  [1m[36mRating Load (0.1ms)[0m  [1mSELECT "ratings".* FROM "ratings" WHERE "ratings"."game_id" = ?[0m  [["game_id", 13]]
+  Rendered games/show.erb within layouts/application (3.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 53ms (Views: 50.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/Clue.jpeg" for ::1 at 2015-09-15 10:11:52 -0500
+
+ActionController::RoutingError (No route matches [GET] "/Clue.jpeg"):
+  actionpack (4.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.0) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.0) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.0) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.0) lib/rails/engine.rb:518:in `call'
+  railties (4.2.0) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (75.6ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (111.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (18.9ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (40.5ms)
+>>>>>>> master

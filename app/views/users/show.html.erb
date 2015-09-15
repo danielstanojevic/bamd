@@ -9,7 +9,7 @@
 		<% if @user.purchases.count > 0 %>
       <ul>
         <% @user.purchases.each do |purchase| %>
-          <li><%= link_to "#{purchase.game.name}", game_path(purchase.game_id) %> <%= stars_to_s(@user.review(purchase.game).rating).html_safe unless @user.review(purchase.game)==nil %> Comment: <%= @user.review(purchase.game).comment unless @user.review(purchase.game)==nil %></li>
+          <li><%= link_to "#{purchase.game.name}", game_path(purchase.game_id) %> <%= stars_to_s(@user.review(purchase.game).stars).html_safe unless @user.review(purchase.game)==nil %> <%= @user.review(purchase.game).comment unless @user.review(purchase.game)==nil %></li>
         <% end %>
       </ul>
     <% else %>

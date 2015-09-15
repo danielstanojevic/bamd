@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
 
   has_secure_password
+
+  def self.search(query)
+    where("username like ?", "%#{query}%")
+  end
 end

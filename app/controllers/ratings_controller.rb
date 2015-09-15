@@ -11,8 +11,9 @@ class RatingsController < ApplicationController
     redirect_to @game
   end
 
-  def index
-    @ratings = Rating.order(:author).page params[:page]
+  def show #added for pagination...might need to remove
+    @game = Game.find(params[:id])
+    @ratings = Rating.order(:name).page params[:page]
   end
 
   private

@@ -11,6 +11,7 @@ class GamesController < ApplicationController
   def show
     @rating = Rating.new
     @game = Game.find_by_id(params[:id])
+    @ratings = @game.ratings.order("created_at DESC").page(params[:page]).per(5)
     render 'show'
   end
 

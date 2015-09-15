@@ -1,0 +1,7 @@
+<h1><%= @mechanic.description.upcase %></h1>
+
+<ul>
+	<% @mechanic.games.each do |game| %>
+	<li><%= link_to "#{game.name}", game_path(game.id)%></li>
+  <% end %>
+</ul>

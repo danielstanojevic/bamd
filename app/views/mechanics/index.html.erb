@@ -1,0 +1,7 @@
+<h1>Mechanics</h1>
+
+<ul>
+	<% @mechanics.each do |mechanic| %>
+	<li><%= link_to "#{mechanic.description}", mechanic_path(mechanic) %></li>
+	<% end %>
+</ul>

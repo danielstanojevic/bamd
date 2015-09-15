@@ -1,5 +1,11 @@
 <div>
   <h1>Games!</h1>
+  <div>
+		<%= form_tag(games_path, :method => "get", id: "search-form") do %>
+		<%= text_field_tag :search, params[:search], placeholder: "Find Games!" %>
+		<%= submit_tag "Search", :name => nil %>
+		<% end %>
+	</div>
   <table id="games-index">
     <tr>
 	    <th></th>
@@ -20,5 +26,3 @@
     <% end %>
   </table>
 </div>
-
-

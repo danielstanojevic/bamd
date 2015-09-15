@@ -26,29 +26,33 @@ class User < ActiveRecord::Base
     where("username like ?", "%#{query}%")
   end
 
+  def review(game)
+    if review = game.ratings.find_by(author_id: self.id)
+      review
+    else
+      #do something!
+    end
+  end
+
   def get_friend_avg(game)
     sum = 0
     friend_length = 0
     self.confirmed_friendships.each do |friendship|
-       friendship.receiver.ratings.each do |rating|
-          if rating.game_id == game.id
-            sum += rating.stars
-            friend_length += 1
-          end
+      friendship.receiver.ratings.each do |rating|
+        if rating.game_id == game.id
+          sum += rating.stars
+          friend_length += 1
         end
       end
-      if friend_length == 0
-        return "No friends have rated this game"
-      else
-      avg_friend_rating = sum / friend_length
-     end
+    end
+    if friend_length == 0
+      return "No friends have rated this game"
+    else
+      return avg_friend_rating = sum / friend_length
+    end
   end
 
- def is_owner?(game)
-  self.owned_games.include?(game)
- end
-
-
-
-
+  def is_owner?(game)
+    self.owned_games.include?(game)
+  end
 end

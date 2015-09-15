@@ -28,13 +28,13 @@
    <div id="owner-friends">
     <h3>Friends Who Own This Game:</h3>
     <% if current_user %>
-    <% current_user.confirmed_friendships.each do |friendship| %>
-      <% if friendship.receiver.owned_games.include?(@game) %>
-     <%= friendship.receiver.username %>
+      <% current_user.confirmed_friendships.each do |friendship| %>
+        <% if friendship.receiver.owned_games.include?(@game) %>
+         <%= friendship.receiver.username %>
+        <%end%>
       <%end%>
-    <%end%>
     <% else %>
-    <h3>Login to view friends who own this game!</h3>
+      <h3>Login to view friends who own this game!</h3>
     <% end %>
   </div>
   <br>
@@ -44,11 +44,11 @@
   <div id="review-container">
     <h2>REVIEWS!</h2>
     <% @game.ratings.each do |rating| %>
-      <%author = rating.get_author%>
+      <% author = rating.get_author%>
       <div class="review">
        <h4 class="rating-stars">Rating: <%= stars_to_s(rating.stars).html_safe %></h4>
         <h3>Review: <%= rating.comment %></h3>
-        <h4>Author: <%=author.username%> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x fa-spin"></i> <% end %> </h4>
+        <h4>Author: <%= author.username %> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x fa-spin"></i> <% end %> </h4>
       </div>
 
     <%end%>

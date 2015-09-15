@@ -19,6 +19,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    if params[:search]
+      @users = User.search(params[:search]).order("created_at DESC")
+    else
+      @users = User.all.order("created_at DESC")
+    end
+  end
+
 private
 
   def user_params

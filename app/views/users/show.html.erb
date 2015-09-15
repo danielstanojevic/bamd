@@ -2,6 +2,7 @@
 	<h1>Welcome, <%=@user.username%></h1>
 
 	<div class="user-purchases">
+    <h2>Game List</h2>
 		<% if current_user.purchases.count > 0 %>
       <ul>
         <% current_user.purchases.each do |purchase| %>
@@ -12,4 +13,18 @@
       <p>Add the <%= link_to 'games', games_path%> you own to your profile page!</p>
     <% end %>
 	</div>
+  <div class="user-friendships">
+    <h2>My Friends</h2>
+    <ul>
+      <% current_user.confirmed_friends.each do |friend| %>
+        <li><%= friend.username %></li>
+      <% end %>
+    </ul>
+    <h2>Friend Requests</h2>
+    <ul>
+      <% current_user.friend_requests.each do |request| %>
+        <li><%= request.username %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>

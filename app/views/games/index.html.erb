@@ -1,30 +1,4 @@
 <div>
-
-  <h1 id="head"> Popular Games!</h1>
-  <div class="game-table">
-
-
-
-  <table id="games-index">
-    <tr>
-	    <th></th>
-      <th>Name</th>
-      <th>Avg. Rating</th>
-    </tr>
-    <% @games.each do |game| %>
-      <tr>
-      <!-- <span class='glyphicon glyphicon-star'></span> -->
-        <% if game.owners.include?(current_user) %>
-          <td class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(game, game.purchases.find_by(owner_id: current_user.id)), method: :delete %></td>
-        <% else %>
-          <td class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(game), method: :post %></td>
-        <% end %>
-        <td><a href="/games/<%= game.id %>"><%= game.name %></a></td>
-        <td><%= stars_to_s(game.avg_user_rating).html_safe %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
   <div id="mechanic-search">
     <%= form_tag(games_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Find Games!" %>
@@ -32,6 +6,28 @@
     <% end %>
   </div>
 
+  <h1 id="head"> Popular Games!</h1>
+  <div class="game-table">
+    <table id="games-index">
+      <tr>
+  	    <th></th>
+        <th>Name</th>
+        <th>Avg. Rating</th>
+      </tr>
+      <% @games.each do |game| %>
+        <tr>
+        <!-- <span class='glyphicon glyphicon-star'></span> -->
+          <% if game.owners.include?(current_user) %>
+            <td class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(game, game.purchases.find_by(owner_id: current_user.id)), method: :delete %></td>
+          <% else %>
+            <td class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(game), method: :post %></td>
+          <% end %>
+          <td><a href="/games/<%= game.id %>"><%= game.name %></a></td>
+          <td><%= stars_to_s(game.avg_user_rating).html_safe %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
 
 

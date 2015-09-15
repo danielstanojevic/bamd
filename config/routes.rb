@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :games do
     resources :ratings
+    resources :purchases
   end
 
   resources :users

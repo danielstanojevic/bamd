@@ -16,4 +16,8 @@ class Game < ActiveRecord::Base
       return average_rating = rating_sum/self.ratings.length
     end
   end
+
+  def self.search(query)
+    where("name like ?", "%#{query}")
+  end
 end

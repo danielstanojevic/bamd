@@ -4,7 +4,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    p params
     @purchase = current_user.purchases.create(game_id: params[:game_id])
     redirect_to games_path
   end

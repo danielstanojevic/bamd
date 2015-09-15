@@ -41,3 +41,10 @@ th {
 .owner-star a{
 	color: gold;
 }
+
+.owner-star a:hover{
+	text-decoration: none;
+}
+
+
+

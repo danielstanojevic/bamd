@@ -25,4 +25,12 @@ class User < ActiveRecord::Base
   def self.search(query)
     where("username like ?", "%#{query}%")
   end
+
+  def review(game)
+    if review = game.ratings.find_by(author_id: self.id)
+      review
+    else
+
+    end
+  end
 end

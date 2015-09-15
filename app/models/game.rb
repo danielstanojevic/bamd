@@ -17,6 +17,12 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def get_img_file
+    img_file = self.name.gsub(" ", "_")
+    img_file = "/" + img_file + ".jpeg"
+    img_file
+  end
+
   def self.search(query)
     where("name like ?", "%#{query}")
   end

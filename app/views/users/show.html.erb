@@ -1,12 +1,15 @@
 <div class="profile-container">
-	<h1>Welcome, <%=@user.username%></h1>
-
+  <% if @user == current_user %>
+  	<h1>Welcome, <%=current_user.username%></h1>
+  <% else %>
+    <h1><%=@user.username%>'s Games</h1>
+  <% end %>
 	<div class="user-purchases">
     <h2>Game List</h2>
-		<% if current_user.purchases.count > 0 %>
+		<% if @user.purchases.count > 0 %>
       <ul>
-        <% current_user.purchases.each do |purchase| %>
-          <li><%= link_to "#{purchase.game.name}", game_path(purchase.game_id) %></li>
+        <% @user.purchases.each do |purchase| %>
+          <li><%= link_to "#{purchase.game.name}", game_path(purchase.game_id) %> <%= stars_to_s(@user.review(purchase.game).stars).html_safe unless @user.review(purchase.game)==nil %> <%= @user.review(purchase.game).comment unless @user.review(purchase.game)==nil %></li>
         <% end %>
       </ul>
     <% else %>
@@ -14,31 +17,33 @@
     <% end %>
 	</div>
 
-  <div class="user-friendships">
-    <h2>My Friends</h2>
-    <ul>
-      <% current_user.confirmed_friendships.each do |friendship| %>
-        <li><%= friendship.receiver.username %></li>
-      <% end %>
-    </ul>
-    <h2>Friend Requests</h2>
-    <ul>
-      <% current_user.friend_requests.each do |request| %>
-        <li><%= request.requester.username %>  <%= link_to "Accept", friendship_path(request), method: :put %></li>
-      <% end %>
-    </ul>
-    <h2>Pending Requests</h2>
-    <ul>
-      <% current_user.pending_requests.each do |request| %>
-        <li><%= request.receiver.username %></li>
-      <% end %>
-    </ul>
-  </div>
+  <% if @user == current_user %>
+    <div class="user-friendships">
+      <h2>My Friends</h2>
+      <ul>
+        <% current_user.confirmed_friendships.each do |friendship| %>
+          <li><%= link_to "#{friendship.receiver.username}", user_path(friendship.receiver) %></li>
+        <% end %>
+      </ul>
+      <h2>Friend Requests</h2>
+      <ul>
+        <% current_user.friend_requests.each do |request| %>
+          <li><%= request.requester.username %>  <%= link_to "Accept", friendship_path(request), method: :put %></li>
+        <% end %>
+      </ul>
+      <h2>Pending Requests</h2>
+      <ul>
+        <% current_user.pending_requests.each do |request| %>
+          <li><%= request.receiver.username %></li>
+        <% end %>
+      </ul>
+    </div>
 
-	<div>
-		<%= form_tag(users_path, :method => "get", id: "search-form") do %>
-		<%= text_field_tag :search, params[:search], placeholder: "Find Friends!" %>
-		<%= submit_tag "Search", :name => nil %>
-		<% end %>
-	</div>
+  	<div>
+  		<%= form_tag(users_path, :method => "get", id: "search-form") do %>
+  		<%= text_field_tag :search, params[:search], placeholder: "Find Friends!" %>
+  		<%= submit_tag "Search", :name => nil %>
+  		<% end %>
+  	</div>
+  <% end %>
 </div>

@@ -12,6 +12,26 @@
   m = Game.create(name:"Megalopolis", description:"SUPER!!")
   bamd = Game.create(name:"BAMD", description:"Great for teams! Da bomb!")
 
+  settlers = Game.create!(name:"The Settlers of Catan", description: "Build, Trade, BEAT YOUR FRIENDS.")
+  munchkin = Game.create!(name: "Munchkin", description: "BACKSTAB YOUR PUNK ASS FRIENDS.")
+  werewolf = Game.create!(name: "Wereworlf", description: "Find the wolves, save the village!")
+  guillotine = Game.create!(name: "Guillotine", description: "French Revolution! Beheadings! Laughs!")
+  legendary = Game.create!(name: "Legendary", description: "Be a superhero from the marvel universe!")
+  hobbit = Game.create!(name: "Hobbit", description: "Can you live until second breakfast???")
+  ascension = Game.create!(name: "Ascension", description: "Made by some magic the gathering dudes.")
+  clue = Game.create!(name: "Clue", description: "The family classic where you hunt a murderer!")
+  hanabi = Game.create!(name: "Hanabi", description: "Don't blow your hands off!")
+  tsuro = Game.create!(name: "Tsuro", description: "Follow the path less traveled.")
+
+
+
+
+
+
+
+
+
+
   coop = Mechanic.create(description:"co-op")
   cb = Mechanic.create(description:"city-building")
 

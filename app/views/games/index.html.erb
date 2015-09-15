@@ -1,11 +1,10 @@
 <div>
-  <h1>Games!</h1>
-  <div>
-		<%= form_tag(games_path, :method => "get", id: "search-form") do %>
-		<%= text_field_tag :search, params[:search], placeholder: "Find Games!" %>
-		<%= submit_tag "Search", :name => nil %>
-		<% end %>
-	</div>
+
+  <h1 id="head"> Popular Games!</h1>
+  <div class="game-table">
+
+
+
   <table id="games-index">
     <tr>
 	    <th></th>
@@ -26,3 +25,14 @@
     <% end %>
   </table>
 </div>
+  <div id="mechanic-search">
+    <%= form_tag(games_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Find Games!" %>
+    <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
+
+</div>
+
+
+

@@ -36,6 +36,7 @@ th {
 
 #games-index td {
 	padding: 10px;
+
 }
 
 .owner-star a{
@@ -45,6 +46,23 @@ th {
 .owner-star a:hover{
 	text-decoration: none;
 }
+
+ul {
+  margin-left: auto;
+}
+.game-table {
+  border: 1px solid black;
+  width: 400px;
+  background-color: #ecf0f1;
+  border-radius: 15%;
+  margin: auto;
+}
+
+#head {
+  margin-left: 430px;
+}
+
+
 
 
 

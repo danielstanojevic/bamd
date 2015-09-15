@@ -1,3 +1,50 @@
 // Place all the styles related to the Games controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#game-name {
+  margin-top: 100px;
+  display: inline-block;
+  border: 1px solid black;
+  width: 400px;
+  background-color: #ecf0f1;
+
+}
+
+#picture {
+  display: inline-block;
+  margin-left: 600px;
+
+  margin-top: -175px;
+}
+
+#mechanics {
+  border: 1px solid black;
+  max-width: 400px;
+  background-color: #ecf0f1;
+}
+
+.review {
+  border: 1px solid black;
+  padding-left: 10px;
+}
+
+#scores {
+
+  width: 400px;
+  background-color: #ecf0f1;
+
+  }
+
+#owner-friends {
+  border: 1px solid black;
+  width: 400px;
+  background-color: #ecf0f1;
+
+}
+
+
+#mechanic-search {
+  margin-top: 10px;
+  margin-left: 475px;
+}

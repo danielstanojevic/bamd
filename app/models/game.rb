@@ -8,7 +8,7 @@ class Game < ActiveRecord::Base
   def avg_user_rating
     rating_sum = 0
     if self.ratings.empty?
-      return "there are no ratings"
+      return "no ratings"
     else
       self.ratings.each do |rating|
         rating_sum += rating.stars

@@ -51,7 +51,7 @@
       <div class="review">
        <h4 class="rating-stars">Rating: <%= stars_to_s(rating.stars).html_safe %></h4>
         <h3>Review: <%= rating.comment %></h3>
-        <h4>Author: <%=author.username%> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x "></i> <% end %> </h4>
+        <h4>Author: <%= link_to "#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x "></i> <% end %> </h4>
 
       </div>
 

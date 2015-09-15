@@ -4,37 +4,37 @@
   [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
 Migrating to CreateGames (20150914185555)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.5ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.5ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185555"]]
   [1m[35m (1.4ms)[0m  commit transaction
 Migrating to CreateRatings (20150914185700)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.5ms)[0m  CREATE TABLE "ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" varchar, "stars" integer, "game_id" integer, "author_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.5ms)[0m  CREATE TABLE "ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" varchar, "stars" integer, "game_id" integer, "author_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185700"]]
   [1m[35m (1.3ms)[0m  commit transaction
 Migrating to CreatePurchases (20150914185730)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "purchases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "purchases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185730"]]
   [1m[35m (1.3ms)[0m  commit transaction
 Migrating to CreateMechanics (20150914185817)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185817"]]
   [1m[35m (1.3ms)[0m  commit transaction
 Migrating to CreateGameMechanics (20150914185850)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.4ms)[0m  CREATE TABLE "game_mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mechanic_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.4ms)[0m  CREATE TABLE "game_mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mechanic_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185850"]]
   [1m[35m (1.2ms)[0m  commit transaction
 Migrating to CreateUsers (20150914185915)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185915"]]
   [1m[35m (1.3ms)[0m  commit transaction
 Migrating to CreateFriendships (20150914185941)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "friendships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "from_id" integer, "to_id" integer, "confirmed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "friendships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "from_id" integer, "to_id" integer, "confirmed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185941"]]
   [1m[35m (1.6ms)[0m  commit transaction
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
@@ -139,7 +139,7 @@ ActionController::RoutingError (uninitialized constant GamesController):
 
 
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
-<<<<<<< HEAD
+
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.3ms)
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (24.4ms)
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (24.1ms)
@@ -165,7 +165,7 @@ ActionController::RoutingError (uninitialized constant GamesController):
   actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
   actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:59:in `controller'
   actionpack (4.2.0) lib/action_dispatch/routing/route_set.rb:38:in `serve'
-=======
+
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.6ms)
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (27.8ms)
   Rendered /Users/apprentice/.rbenv/versions/2.0.0-p598/lib/ruby/gems/2.0.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (21.0ms)
@@ -314,10 +314,10 @@ SyntaxError (/Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.h
 ...);@output_buffer.safe_append='\', @user %>
 ...                               ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:13: syntax error, unexpected keyword_else, expecting ')'
-'.freeze;   else 
+'.freeze;   else
                 ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:15: syntax error, unexpected keyword_end, expecting ')'
-'.freeze;   end 
+'.freeze;   end
                ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:24: syntax error, unexpected keyword_end, expecting ')'):
@@ -588,10 +588,10 @@ SyntaxError (/Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.h
 ...);@output_buffer.safe_append='\', @user %>
 ...                               ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:13: syntax error, unexpected keyword_else, expecting ')'
-'.freeze;   else 
+'.freeze;   else
                 ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:15: syntax error, unexpected keyword_end, expecting ')'
-'.freeze;   end 
+'.freeze;   end
                ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:22: syntax error, unexpected keyword_ensure, expecting ')'
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:24: syntax error, unexpected keyword_end, expecting ')'):
@@ -1095,7 +1095,7 @@ SyntaxError (/Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.h
 ... method: :delete, signup_path );@output_buffer.safe_append='
 ...                               ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:17: syntax error, unexpected keyword_end, expecting ')'
-'.freeze;   end 
+'.freeze;   end
                ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:24: syntax error, unexpected keyword_ensure, expecting ')'
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:26: syntax error, unexpected keyword_end, expecting ')'):
@@ -1129,7 +1129,7 @@ SyntaxError (/Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.h
 ... method: :delete, signup_path );@output_buffer.safe_append='
 ...                               ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:17: syntax error, unexpected keyword_end, expecting ')'
-'.freeze;   end 
+'.freeze;   end
                ^
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:24: syntax error, unexpected keyword_ensure, expecting ')'
 /Users/apprentice/Desktop/BAMD/bamd/app/views/layouts/application.html.erb:26: syntax error, unexpected keyword_end, expecting ')'):
@@ -1920,37 +1920,37 @@ ActionView::Template::Error (divided by 0):
   [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
 Migrating to CreateGames (20150914185555)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.4ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.4ms)[0m  CREATE TABLE "games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185555"]]
   [1m[35m (1.1ms)[0m  commit transaction
 Migrating to CreateRatings (20150914185700)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" varchar, "stars" integer, "game_id" integer, "author_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "ratings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" varchar, "stars" integer, "game_id" integer, "author_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185700"]]
   [1m[35m (1.1ms)[0m  commit transaction
 Migrating to CreatePurchases (20150914185730)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "purchases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "purchases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185730"]]
   [1m[35m (1.1ms)[0m  commit transaction
 Migrating to CreateMechanics (20150914185817)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185817"]]
   [1m[35m (1.1ms)[0m  commit transaction
 Migrating to CreateGameMechanics (20150914185850)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "game_mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mechanic_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "game_mechanics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mechanic_id" integer, "game_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185850"]]
   [1m[35m (1.2ms)[0m  commit transaction
 Migrating to CreateUsers (20150914185915)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185915"]]
   [1m[35m (1.2ms)[0m  commit transaction
 Migrating to CreateFriendships (20150914185941)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.3ms)[0m  CREATE TABLE "friendships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "from_id" integer, "to_id" integer, "confirmed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[35m (0.3ms)[0m  CREATE TABLE "friendships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "from_id" integer, "to_id" integer, "confirmed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)
   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150914185941"]]
   [1m[35m (1.1ms)[0m  commit transaction
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m

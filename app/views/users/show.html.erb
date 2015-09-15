@@ -1,1 +1,15 @@
-<h1>Welcome, <%=@user.username%></h1>
+<div class="profile-container">
+	<h1>Welcome, <%=@user.username%></h1>
+
+	<div class="user-purchases">
+		<% if current_user.purchases.count > 0 %>
+      <ul>
+        <% current_user.purchases.each do |purchase| %>
+          <li><%= link_to "#{purchase.game.name}", game_path(purchase.game_id) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Add the <%= link_to 'games', games_path%> you own to your profile page!</p>
+    <% end %>
+	</div>
+</div>

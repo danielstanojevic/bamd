@@ -12,8 +12,8 @@ class Game < ActiveRecord::Base
     else
       self.ratings.each do |rating|
         rating_sum += rating.stars
-    end
-    return average_rating = rating_sum/self.ratings.length
+      end
+      return average_rating = rating_sum/self.ratings.length
     end
   end
 end

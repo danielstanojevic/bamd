@@ -10,6 +10,41 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap
  *= require_tree .
  *= require_self
  */
+
+/** {
+	border: 1px solid gray;
+}*/
+
+
+/*.container {
+	margin: auto;
+	border: 2px solid black;
+}*/
+
+#games-index {
+	font-size: 1.5em;
+	/*text-align: center;*/
+}
+
+th {
+	/*	text-align: center;*/
+}
+
+#games-index td {
+	padding: 10px;
+}
+
+.owner-star a{
+	color: gold;
+}
+
+.owner-star a:hover{
+	text-decoration: none;
+}
+
+
+

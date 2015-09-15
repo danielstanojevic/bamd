@@ -1,11 +1,11 @@
-<div class="container">
+<div class="login-container">
 <h1>Log in to see games</h1>
   <div id="login-form" >
     <%= form_for(:session, url: login_path) do |f| %>
       <%= f.label :username %>
       <%= f.text_field :username, placeholder: "DannyBoy" %>
       <%= f.label :password %>
-      <%= f.password_field :passowrd, placeholder: "********" %>
+      <%= f.password_field :password, placeholder: "********" %>
       <%= f.submit "Login" %>
     <% end %>
   </div>

@@ -10,7 +10,6 @@ class GamesController < ApplicationController
 
   def show
     @rating = Rating.new
-    @user = User.new
     @game = Game.find_by_id(params[:id])
     render 'show'
   end

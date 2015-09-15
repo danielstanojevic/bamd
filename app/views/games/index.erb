@@ -1,9 +1,19 @@
 <div>
   <h1>Games!</h1>
+  <table id="games-index">
+    <tr>
+	    <th></th>
+      <th>Name</th>
+      <th>Avg. Rating</th>
+    </tr>
     <% @games.each do |game| %>
-    <h2><a href="/games/<%= game.id %>"><%= game.name %></a></h2>
-    <h3><%= game.avg_user_rating %></h3>
+      <tr>
+        <td><a href="/purchases"><span class="glyphicon glyphicon-star"></span></a></td>
+        <td><a href="/games/<%= game.id %>"><%= game.name %></a></td>
+        <td><%= game.avg_user_rating %></td>
+      </tr>
     <% end %>
+  </table>
 </div>
 
 

@@ -28,14 +28,16 @@
   </div>
 
   <br>
+
    <div id="owner-friends">
-    <h3>Friends Who Own This Game:</h3>
-    <% if current_user %>
-      <% current_user.confirmed_friendships.each do |friendship| %>
-        <% if friendship.receiver.owned_games.include?(@game) %>
-         <%= friendship.receiver.username %>
+
+    <% if current_user && !current_user.friend_owners(@game).empty? %>
+     <h3>Friends Who Own This Game:</h3>
+      <% current_user.friend_owners(@game).each do |friend| %>
+         <%= link_to "#{friend.username}",user_path(friend) %>
         <%end%>
-      <%end%>
+    <% elsif current_user.friend_owners(@game).empty? %>
+        <h3>No Friends Own This Game</h3>
     <% else %>
       <h3>Login to view friends who own this game!</h3>
     <% end %>

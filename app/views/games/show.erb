@@ -8,7 +8,8 @@
 
     <img src= <%="/#{@game.name}.jpeg"  %>>
     <div id="scores">
-    <h3>Community Score: <%= @game.avg_user_rating %> Stars</h3>
+
+    <h3>Community Score: <%= stars_to_s(@game.avg_user_rating).html_safe %></h3>
     <% if current_user != nil %>
     <h3>Friend Score:</h3>
     <% end %>
@@ -38,7 +39,7 @@
     <h2>REVIEWS!</h2>
     <% @game.ratings.each do |rating| %>
       <div class="review">
-      <h4>Rating: <%= rating.stars %> Stars</h3>
+      <h4 class="rating-stars">Rating: <%= stars_to_s(rating.stars).html_safe %></h3>
       <h4>Review: <%= rating.comment %></h3>
     </div>
     <%end%>

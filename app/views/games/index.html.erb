@@ -20,7 +20,7 @@
           <td class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(game), method: :post %></td>
         <% end %>
         <td><a href="/games/<%= game.id %>"><%= game.name %></a></td>
-        <td><%= game.avg_user_rating %></td>
+        <td><%= stars_to_s(game.avg_user_rating).html_safe %></td>
       </tr>
     <% end %>
   </table>

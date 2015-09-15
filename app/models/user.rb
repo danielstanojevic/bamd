@@ -40,7 +40,15 @@ class User < ActiveRecord::Base
       if friend_length == 0
         return "No friends have rated this game"
       else
-       return avg_friend_rating = sum / friend_length
+      avg_friend_rating = sum / friend_length
      end
   end
+
+ def is_owner?(game)
+  self.owned_games.include?(game)
+ end
+
+
+
+
 end

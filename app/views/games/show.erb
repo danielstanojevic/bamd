@@ -1,6 +1,7 @@
 <div class="container">
   <div id="game-name">
-    <h1><%= @game.name %></h1>
+    <h1><%= @game.name %>
+    <% if current_user.is_owner?(@game) %> <i id="gold_star" class="fa fa-star fa-5x"></i> <% end %></h1>
     <h2>Description:</h2>
     <h3><%= @game.description %></h3>
   </div>
@@ -47,10 +48,7 @@
       <div class="review">
        <h4 class="rating-stars">Rating: <%= stars_to_s(rating.stars).html_safe %></h4>
         <h3>Review: <%= rating.comment %></h3>
-        <h4>Author: <%=author.username%> </h4>
-        <% if author.owned_games.include?(@game)%>
-          <h4>OWNS THIS</h4>
-        <% end %>
+        <h4>Author: <%=author.username%> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x fa-spin"></i> <% end %> </h4>
       </div>
 
     <%end%>

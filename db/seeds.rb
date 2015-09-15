@@ -12,6 +12,18 @@
   m = Game.create(name:"Megalopolis", description:"SUPER!!")
   bamd = Game.create(name:"BAMD", description:"Great for teams! Da bomb!")
 
+
+  settlers = Game.create!(name:"The Settlers of Catan", description: "Build, Trade, BEAT YOUR FRIENDS.")
+  munchkin = Game.create!(name: "Munchkin", description: "BACKSTAB YOUR PUNK ASS FRIENDS.")
+  werewolf = Game.create!(name: "Wereworlf", description: "Find the wolves, save the village!")
+  guillotine = Game.create!(name: "Guillotine", description: "French Revolution! Beheadings! Laughs!")
+  legendary = Game.create!(name: "Legendary", description: "Be a superhero from the marvel universe!")
+  hobbit = Game.create!(name: "Hobbit", description: "Can you live until second breakfast???")
+  ascension = Game.create!(name: "Ascension", description: "Made by some magic the gathering dudes.")
+  clue = Game.create!(name: "Clue", description: "The family classic where you hunt a murderer!")
+  hanabi = Game.create!(name: "Hanabi", description: "Don't blow your hands off!")
+  tsuro = Game.create!(name: "Tsuro", description: "Follow the path less traveled.")
+
   coop = Mechanic.create(description:"Co-Op")
   cb = Mechanic.create(description:"City-Building")
   atc = Mechanic.create(description: "Area/Territory Control")
@@ -28,6 +40,48 @@
   sc = Mechanic.create(description: "Set Collection")
   tp = Mechanic.create(description: "Tile Placement")
   st = Mechanic.create(description: "Secret Traitor")
+
+  settlers.mechanics << rm
+  settlers.mechanics << tp
+  settlers.mechanics << ec
+  settlers.mechanics << atc
+  settlers.mechanics << ng
+
+  munchkin.mechanics << db
+  munchkin.mechanics << fg
+  munchkin.mechanics << pt
+  munchkin.mechanics << coop
+  munchkin.mechanics << ng
+
+  werewolf.mechanics << st
+  werewolf.mechanics << rp
+
+  guillotine.mechanics << cd
+  guillotine.mechanics << sc
+
+ legendary.mechanics << db
+ legendary.mechanics << coop
+ legendary.mechanics << fg
+
+ hobbit.mechanics << db
+
+ ascension.mechanics << db
+ ascension.mechanics << fg
+ ascension.mechanics << rm
+
+ clue.mechanics << st
+ clue.mechanics << rp
+
+ hanabi.mechanics << coop
+ hanabi.mechanics << pt
+ hanabi.mechanics << sc
+
+ tsuro.mechanics << tp
+ tsuro.mechanics << atc
+
+
+
+
 
   a.mechanics << coop
   b.mechanics << cb

@@ -37,3 +37,7 @@ th {
 #games-index td {
 	padding: 10px;
 }
+
+.owner-star a{
+	color: gold;
+}

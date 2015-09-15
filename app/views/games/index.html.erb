@@ -10,9 +10,9 @@
       <tr>
       <!-- <span class='glyphicon glyphicon-star'></span> -->
         <% if game.owners.include?(current_user) %>
-          <td><%= link_to "&#9733".html_safe, game_purchase_path(game, game.purchases.find_by(owner_id: current_user.id)), method: :delete %></td>
+          <td class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(game, game.purchases.find_by(owner_id: current_user.id)), method: :delete %></td>
         <% else %>
-          <td><%= link_to "&#9734".html_safe, game_purchases_path(game), method: :post %></td>
+          <td class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(game), method: :post %></td>
         <% end %>
         <td><a href="/games/<%= game.id %>"><%= game.name %></a></td>
         <td><%= game.avg_user_rating %></td>

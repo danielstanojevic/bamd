@@ -27,7 +27,7 @@
     <h3>Friends Who Own This Game:</h3>
     <% @user.friendships.each do |friend| %>
       <% if friend.owned_games.include(@game) %>
-      <%= friend.username %>
+        <%= friend.username %>
       <%end%>
     <%end%>
   </div>

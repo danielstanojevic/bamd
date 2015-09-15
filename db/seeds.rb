@@ -12,6 +12,7 @@
   m = Game.create(name:"Megalopolis", description:"SUPER!!")
   bamd = Game.create(name:"BAMD", description:"Great for teams! Da bomb!")
 
+
   settlers = Game.create!(name:"The Settlers of Catan", description: "Build, Trade, BEAT YOUR FRIENDS.")
   munchkin = Game.create!(name: "Munchkin", description: "BACKSTAB YOUR PUNK ASS FRIENDS.")
   werewolf = Game.create!(name: "Wereworlf", description: "Find the wolves, save the village!")
@@ -32,8 +33,25 @@
 
 
 
-  coop = Mechanic.create(description:"co-op")
-  cb = Mechanic.create(description:"city-building")
+
+
+  coop = Mechanic.create(description:"Co-Op")
+  cb = Mechanic.create(description:"City-Building")
+  atc = Mechanic.create(description: "Area/Territory Control")
+  ab = Mechanic.create(description: "Auction/Bidding")
+  cd = Mechanic.create(description: "Card Drafting")
+  db = Mechanic.create(description: "Deck Building")
+  dx = Mechanic.create(description: "Dexterity")
+  ec = Mechanic.create(description: "Economics")
+  fg = Mechanic.create(description: "Fighting")
+  ng = Mechanic.create(description: "Negotiation")
+  pt = Mechanic.create(description: "Partnership")
+  rm = Mechanic.create(description: "Resource Management")
+  rp = Mechanic.create(description: "Role Playing")
+  sc = Mechanic.create(description: "Set Collection")
+  tp = Mechanic.create(description: "Tile Placement")
+  st = Mechanic.create(description: "Secret Traitor")
+
 
   a.mechanics << coop
   b.mechanics << cb

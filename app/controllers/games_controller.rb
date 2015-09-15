@@ -1,9 +1,9 @@
 class GamesController < ApplicationController
   def index
     if params[:search]
-      @games = Game.search(params[:search]).order("created_at DESC")
+      @games = Game.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
     else
-      @games = Game.all
+      @games = Game.all.page(params[:page]).per(10)
     end
     render 'index'
   end

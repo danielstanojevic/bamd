@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     if review = game.ratings.find_by(author_id: self.id)
       review
     else
-
+      #do something!
     end
   end
 end

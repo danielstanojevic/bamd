@@ -14,6 +14,24 @@ class User < ActiveRecord::Base
     self.friendships.where(confirmed: true)#.map { |friendship| User.find(friendship.to_id) }
   end
 
+  def friends
+    friends = []
+    self.confirmed_friendships.each do |friendship|
+      friends << User.find(friendship.receiver.id)
+    end
+    friends
+  end
+
+  def friend_owners(game)
+    friend_owners = []
+    self.friends.each do |friend|
+      if friend.owned_games.include?(game)
+        friend_owners << friend
+        end
+      end
+    friend_owners
+  end
+
   def friend_requests
     Friendship.where(confirmed: nil, to_id: self.id)#.map { |friendship| friendship.requester }
   end

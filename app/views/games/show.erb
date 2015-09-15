@@ -48,7 +48,7 @@
   <br>
   <div id="review-container">
     <h2>REVIEWS!</h2>
-    <% @game.ratings.each do |rating| %>
+    <% @ratings.each do |rating| %>
       <% author = rating.get_author%>
       <div class="review">
        <h4 class="rating-stars">Rating: <%= stars_to_s(rating.stars).html_safe %></h4>
@@ -58,6 +58,7 @@
       </div>
 
     <%end%>
+    <div class="paginate"><%= paginate @ratings %></div>
   </div>
   <% if current_user != nil  %>
   <div id="review-form">

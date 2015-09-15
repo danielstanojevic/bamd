@@ -24,17 +24,6 @@
   hanabi = Game.create!(name: "Hanabi", description: "Don't blow your hands off!")
   tsuro = Game.create!(name: "Tsuro", description: "Follow the path less traveled.")
 
-
-
-
-
-
-
-
-
-
-
-
   coop = Mechanic.create(description:"Co-Op")
   cb = Mechanic.create(description:"City-Building")
   atc = Mechanic.create(description: "Area/Territory Control")
@@ -51,6 +40,47 @@
   sc = Mechanic.create(description: "Set Collection")
   tp = Mechanic.create(description: "Tile Placement")
   st = Mechanic.create(description: "Secret Traitor")
+
+  settlers.mechanics << rm
+  settlers.mechanics << tp
+  settlers.mechanics << ec
+  settlers.mechanics << atc
+  settlers.mechanics << ng
+
+  munchkin.mechanics << db
+  munchkin.mechanics << fg
+  munchkin.mechanics << pt
+  munchkin.mechanics << coop
+  munchkin.mechanics << ng
+
+  werewolf.mechanics << st
+  werewolf.mechanics << rp
+
+  guillotine.mechanics << cd
+  guillotine.mechanics << sc
+
+ legendary.mechanics << db
+ legendary.mechanics << coop
+ legendary.mechanics << fg
+
+ hobbit.mechanics << db
+
+ ascension.mechanics << db
+ ascension.mechanics << fg
+ ascension.mechanics << rm
+
+ clue.mechanics << st
+ clue.mechanics << rp
+
+ hanabi.mechanics << coop
+ hanabi.mechanics << pt
+ hanabi.mechanics << sc
+
+ tsuro.mechanics << tp
+ tsuro.mechanics << atc
+
+
+
 
 
   a.mechanics << coop

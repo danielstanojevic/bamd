@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
       if friend_length == 0
         return "No friends have rated this game"
       else
-       avg_friend_rating = sum / friend_length
+       return avg_friend_rating = sum / friend_length
      end
   end
 end

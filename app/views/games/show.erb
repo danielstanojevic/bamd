@@ -7,11 +7,14 @@
   <div id="picture">
   <img src= <%=@game.get_img_file%>>
     <div id="scores">
-      <h3>Community Score: <%= @game.avg_user_rating %> Stars</h3>
-      <% if current_user != nil %>
-        <h3>Friend Score: <%=current_user.get_friend_avg(@game) %></h3>
-      <% end %>
-    </div>
+
+
+    <h3>Community Score: <%= stars_to_s(@game.avg_user_rating).html_safe %></h3>
+    <% if current_user != nil %>
+    <h3>Friend Score: <%=stars_to_s(current_user.get_friend_avg(@game)).html_safe  %></h3>
+    <% end %>
+  </div>
+
   </div>
   <div id="mechanics">
     <h2>Mechanics:</h2>
@@ -42,13 +45,14 @@
     <% @game.ratings.each do |rating| %>
       <%author = rating.get_author%>
       <div class="review">
-        <h4>Rating: <%= rating.stars %> Stars</h3>
-        <h4>Review: <%= rating.comment %></h3>
+       <h4 class="rating-stars">Rating: <%= stars_to_s(rating.stars).html_safe %></h4>
+        <h3>Review: <%= rating.comment %></h3>
         <h4>Author: <%=author.username%> </h4>
         <% if author.owned_games.include?(@game)%>
           <h4>OWNS THIS</h4>
         <% end %>
       </div>
+
     <%end%>
   </div>
   <% if current_user != nil  %>

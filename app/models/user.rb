@@ -22,5 +22,7 @@ class User < ActiveRecord::Base
     self.friendship_receivers.where(confirmed: !true)
   end
 
-
+  def self.search(query)
+    where("username like ?", "%#{query}%")
+  end
 end

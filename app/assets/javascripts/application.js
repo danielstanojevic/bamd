@@ -17,7 +17,11 @@
 //= require_tree .
 
 $(document).ready(function(){
-
+  $(".fa-star").hover( function(){
+      $(".fa-star").addClass("fa-spin")
+  }, function(){
+      $(".fa-star").removeClass("fa-spin")
+  });
 
 
 

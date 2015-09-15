@@ -1,5 +1,12 @@
 <h1>Mechanics</h1>
 
+<div>
+	<%= form_tag(mechanics_path, :method => "get", id: "search-form") do %>
+	<%= text_field_tag :search, params[:search], placeholder: "Find Game Mechanics!" %>
+	<%= submit_tag "Search", :name => nil %>
+	<% end %>
+</div>
+
 <ul>
 	<% @mechanics.each do |mechanic| %>
 	<li><%= link_to "#{mechanic.description}", mechanic_path(mechanic) %></li>

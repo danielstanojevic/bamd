@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150914185941) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "friendships", force: :cascade do |t|
     t.integer  "from_id"
     t.integer  "to_id"
@@ -64,6 +67,6 @@ ActiveRecord::Schema.define(version: 20150914185941) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

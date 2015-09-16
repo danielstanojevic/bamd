@@ -5,6 +5,10 @@ class Game < ActiveRecord::Base
   has_many :game_mechanics
   has_many :mechanics, through: :game_mechanics
 
+  validates :name, presence: true
+  validates :description, presence: true
+
+
   # added for kaminari pagination
   paginates_per 50
 

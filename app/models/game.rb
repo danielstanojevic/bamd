@@ -8,6 +8,7 @@ class Game < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
 
+
   # added for kaminari pagination
   paginates_per 50
 

@@ -14,7 +14,7 @@
         <th>Name</th>
         <th>Avg. Rating</th>
       </tr>
-      <% Game.order_by_user_friend_rating.each do |game| %>
+      <% @games.each do |game| %>
         <tr>
         <!-- <span class='glyphicon glyphicon-star'></span> -->
           <% if current_user && game.owners.include?(current_user) %>

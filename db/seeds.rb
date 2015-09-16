@@ -200,7 +200,7 @@ end
     games.each do |game|
       game.ratings << Rating.create(stars: [*1..5].sample,
                                     comment: Faker::Lorem.sentence,
-                                    author: User.all.select { |user| user.id == rand(10)}[0])
+                                    author: User.all.select { |user| user.id == rand(1..10)}[0])
     end
   end
 

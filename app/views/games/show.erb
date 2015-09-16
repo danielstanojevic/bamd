@@ -51,6 +51,7 @@
   </div>
 
   <div id="game-review-container">
+    <% if @ratings.count > 0  %>
     <h2>Reviews</h2>
       <% @ratings.each do |rating| %>
       <% author = rating.get_author %>
@@ -59,6 +60,7 @@
         <p><%= link_to "-#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star"></i> <br><%= rating.created_at.strftime("%m-%d-%Y") %><% end %> </p>
       </div>
       <%end%>
+    <% end %>
       <div class="paginate"><%= paginate @ratings %></div>
 
     <div id="review-form"></div>

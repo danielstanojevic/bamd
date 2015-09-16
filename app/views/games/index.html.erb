@@ -16,7 +16,6 @@
       </tr>
       <% @games.each do |game| %>
         <tr>
-        <!-- <span class='glyphicon glyphicon-star'></span> -->
           <% if current_user && game.owners.include?(current_user) %>
             <td class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(game, game.purchases.find_by(owner_id: current_user.id)), method: :delete %></td>
           <% elsif current_user %>

@@ -1,11 +1,11 @@
 <div>
-    <% if @users == [] %>
-        <h4>There are no users that match your search.</h4>
-    <% else %>
-    	<h1><%= @users.count %> friend(s) found</h1>
-      <% @users.each do |user| %>
-	      <h3> Click on a user to send a friend request.</h3>
-      	<h4> <%= link_to "#{user.username}", friendships_path(:to_id => user), :method => :post %> </h4>
-      <% end %>
+  <% if @users == [] %>
+    <h4>There are no users that match your search.</h4>
+  <% else %>
+  	<h1><%= @users.count %> friend(s) found</h1>
+    <% @users.each do |user| %>
+      <h3> Click on a user to send a friend request.</h3>
+    	<h4> <%= link_to "#{user.username}", friendships_path(:to_id => user), :method => :post %> </h4>
     <% end %>
+  <% end %>
 </div>

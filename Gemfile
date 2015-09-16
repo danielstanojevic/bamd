@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 # gem 'font-awesome-less'
 
+gem 'faker'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
   gem 'kaminari', '~> 0.16.3'
@@ -50,4 +52,3 @@ group :development, :test do
 
 
 end
-

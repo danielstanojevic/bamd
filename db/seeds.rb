@@ -23,6 +23,41 @@
   clue = Game.create!(name: "Clue", description: "The family classic where you hunt a murderer!")
   hanabi = Game.create!(name: "Hanabi", description: "Don't blow your hands off!")
   tsuro = Game.create!(name: "Tsuro", description: "Follow the path less traveled.")
+  #
+  cards = Game.create!(name: "Cards Against Humanity", description: "Be the worst you can be!")
+  pandemic = Game.create!(name: "Pandemic", description: "Work together to beat deadly viruses!")
+  takenoko = Game.create!(name: "Takenoko", description: "A panda eats bamboo and a gardener grows it.")
+  betrayal = Game.create!(name: "Betrayal at House on the Hill", description: "Someone will betray you, and kill you all. Or not.")
+  lords = Game.create!(name: "Lords of Waterdeep", description: "Complete quests, fight for control, manage your kingdom's resources. Fun!")
+  fluxx = Game.create!(name: "Fluxx", description: "Rules change all the time. Keep up!")
+  gloom = Game.create!(name: "Gloom", description: "Try to make your family as miserable as possible before they die.")
+  elder = Game.create!(name: "Elder Sign", description: "Roll dice to see if you can work together to beat the monster!")
+  battlestar = Game.create!(name: "Battlestar Galactica", description: "Someone's a cylon. They must be stopped.")
+  candy = Game.create!(name: "Candy Land", description: "Seriously it's just boring if you're not four years old. I promise.")
+
+# 10.times do
+#   settlers.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   munchkin.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   werewolf.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   guillotine.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   legendary.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   hobbit.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   ascension.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   clue.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   hanabi.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   tsuro.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   cards.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   pandemic.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   takenoko.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   betrayal.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   lords.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   fluxx.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   gloom.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   elder.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   battlestar.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#   candy.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+#
+#   end
 
   coop = Mechanic.create(description:"Co-Op")
   cb = Mechanic.create(description:"City-Building")
@@ -40,6 +75,51 @@
   sc = Mechanic.create(description: "Set Collection")
   tp = Mechanic.create(description: "Tile Placement")
   st = Mechanic.create(description: "Secret Traitor")
+
+  cards.mechanics << cd
+
+  pandemic.mechanics << coop
+  pandemic.mechanics << atc
+  pandemic.mechanics << pt
+  pandemic.mechanics << rm
+
+
+  takenoko.mechanics << rm
+  takenoko.mechanics << sc
+  takenoko.mechanics << tp
+
+  betrayal.mechanics << st
+  betrayal.mechanics << pt
+  betrayal.mechanics << tp
+  betrayal.mechanics << rm
+
+  lords.mechanics << rm
+  lords.mechanics << sc
+  lords.mechanics << rp
+
+  fluxx.mechanics << sc
+  fluxx.mechanics << db
+  fluxx.mechanics << cd
+
+  gloom.mechanics << sc
+  gloom.mechanics << db
+  gloom.mechanics << cd
+
+  elder.mechanics << ng
+  elder.mechanics << pt
+  elder.mechanics << coop
+
+  battlestar.mechanics << st
+  battlestar.mechanics << pt
+  battlestar.mechanics << atc
+  battlestar.mechanics << rp
+  battlestar.mechanics << ng
+  battlestar.mechanics << fg
+
+  candy.mechanics << sc
+  candy.mechanics << cd
+
+
 
   settlers.mechanics << rm
   settlers.mechanics << tp
@@ -86,3 +166,75 @@
   d.mechanics << cb
   bamd.mechanics << coop
   bamd.mechanics << cb
+
+
+  # settlers.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # munchkin.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # werewolf.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # guillotine.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # legendary.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # hobbit.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # ascension.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # clue.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # hanabi.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # tsuro.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # cards.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # pandemic.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # takenoko.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # betrayal.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # lords.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # fluxx.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # gloom.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # elder.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # battlestar.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+  # candy.ratings.create!( stars: [*1..5].sample, comment: Faker::Lorem.sentence, author: Faker::Internet.user_name)
+
+
+15.times do
+  u = User.create!( username: Faker::Internet.user_name,
+                  password: "password!")
+end
+
+10.times do
+  games = Game.all
+    games.each do |game|
+      game.ratings << Rating.create(stars: [*1..5].sample,
+                                    comment: Faker::Lorem.sentence,
+                                    author: User.all.select { |user| user.id == rand(10)}[0])
+    end
+  end
+
+      # users.each do |user|
+      #  user.ratings << Rating.create!(stars: [*1..5].sample, comment: Faker::Lorem.sentence)
+    #   end
+    # game.ratings << review
+  # users = User.all
+  # users.each do |user|
+  #   user.ratings << Rating.create!(stars: [*1..5].sample, comment: Faker::Lorem.sentence)
+  # end
+  # games = Game.all
+  #
+  # games.each do |game|
+  #   game.ratings << review
+#   end
+# end
+  # settlers.ratings << review
+  # munchkin.ratings << review
+  # werewolf.ratings << review
+  # guillotine.ratings << review
+  # legendary.ratings << review
+  # hobbit.ratings << review
+  # ascension.ratings << review
+  # clue.ratings << review
+  # hanabi.ratings << review
+  # tsuro.ratings << review
+  # cards.ratings << review
+  # pandemic.ratings << review
+  # takenoko.ratings << review
+  # betrayal.ratings << review
+  # lords.ratings << review
+  # fluxx.ratings << review
+  # gloom.ratings << review
+  # elder.ratings << review
+  # battlestar.ratings << review
+  # candy.ratings << review

@@ -9,7 +9,7 @@ describe User do
        @confirmed_friendship =  Friendship.create!(from_id: @user.id, to_id: @user3.id, confirmed: true)
        @receiving = Friendship.create!(from_id: @user3.id, to_id: @user2.id, confirmed: nil)
        @game = Game.create!(name: "Boppy", description: "Win Win")
-       @game.ratings << @rating = Rating.create!(stars: 4, comment: "bop", author_id: @user.id)
+       @game.ratings << @rating = Rating.create!(stars: 4, comment: "bop", author_id: @user.id, game_id: @game.id)
        @user3.owned_games << @game
     end
     after(:each) do

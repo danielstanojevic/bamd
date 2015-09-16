@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def confirmed_friendships
-    self.friendships.where(confirmed: true)#.map { |friendship| User.find(friendship.to_id) }
+    self.friendships.where(confirmed: true)
   end
 
   def friends
@@ -33,11 +33,11 @@ class User < ActiveRecord::Base
   end
 
   def friend_requests
-    Friendship.where(confirmed: nil, to_id: self.id)#.map { |friendship| friendship.requester }
+    Friendship.where(confirmed: nil, to_id: self.id)
   end
 
   def pending_requests
-    self.friendships.where(confirmed: nil)#.map { |friendship| friendship.receiver }
+    self.friendships.where(confirmed: nil)
   end
 
   def self.search(query)
@@ -47,8 +47,6 @@ class User < ActiveRecord::Base
   def review(game)
     if review = game.ratings.find_by(author_id: self.id)
       review
-    else
-      #do something!
     end
   end
 

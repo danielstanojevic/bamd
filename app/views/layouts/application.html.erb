@@ -11,7 +11,6 @@
 <body>
 <ul class="nav nav-pills">
   <% if current_user %>
-  <!-- class="active" -->
     <li role="presentation"> <%= link_to "#{current_user.username}", current_user %></li>
     <li role="presentation"><%= link_to 'Logout', logout_path, method: :delete %></li>
   <% else %>

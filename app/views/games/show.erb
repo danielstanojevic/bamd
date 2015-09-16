@@ -3,10 +3,12 @@
   <div id="game-header">
       <h1 class="text-primary"> <%= @game.name %>
         <% if @game.owners.include?(current_user) %>
-        <span class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(@game, @game.purchases.find_by(owner_id: current_user.id)), method: :delete %></span>
-      <% else %>
-        <span class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(@game), method: :post %> </span>
-      <% end %>
+          <span class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(@game, @game.purchases.find_by(owner_id: current_user.id)), method: :delete %></span>
+        <% else %>
+          <% if current_user %>
+            <span class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(@game), method: :post %></span>
+          <% end %>
+        <% end %>
       </h1>
       <p><%= @game.description %></p>
     </div>
@@ -19,15 +21,15 @@
     <div id="game-scores">
       <h4>Community <%= stars_to_s(@game.avg_user_rating).html_safe %></h4>
         <% if current_user && friend_average = current_user.get_friend_avg(@game)  %>
-      <h4>Friend <%=stars_to_s(friend_average).html_safe %></h4>
+          <h4>Friend <%=stars_to_s(friend_average).html_safe %></h4>
         <% end %>
     </div>
 
     <div id="game-mechanics">
       <h3>Mechanics:</h3>
-        <% @game.mechanics.each do |mechanic| %>
-      <p> <%=link_to "#{mechanic.description}", mechanic_path(mechanic)%> </p>
-        <% end %>
+      <% @game.mechanics.each do |mechanic| %>
+        <p><%=link_to "#{mechanic.description}", mechanic_path(mechanic)%></p>
+      <% end %>
     </div>
 
     <div id="game-owner-friends">
@@ -50,13 +52,14 @@
 
   <div id="game-review-container">
     <h2>Reviews</h2>
-      <% @game.ratings.each do |rating| %>
-      <% author = rating.get_author%>
+      <% @ratings.each do |rating| %>
+      <% author = rating.get_author %>
       <div class="list-reviews">
         <p class="rating-stars"> <%= stars_to_s(rating.stars).html_safe %>  <%= rating.comment %></p>
         <p><%= link_to "-#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star"></i> <% end %> </p>
       </div>
       <%end%>
+      <div class="paginate"><%= paginate @ratings %></div>
 
     <div id="review-form"></div>
       <% if current_user  %>
@@ -69,15 +72,11 @@
             <input type="radio" id="star3" name="rating[stars]" value="3" /><label for="star3" title="Meh">3 stars</label>
             <input type="radio" id="star2" name="rating[stars]" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
             <input type="radio" id="star1" name="rating[stars]" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-            <!-- <label for="rating_comment">Comment</label><br> -->
-            <!-- <input type = "textarea" name="rating[comment]" id="rating_comment"> -->
             <textarea id="rating_comment" name="rating[comment]" cols="45" rows="10" placeholder="Write your review here!"></textarea>
           </fieldset><br>
             <input type="submit" value="Add rating"/>
           </form>
         </div>
       <% end %>
-
-    <div class="paginate"><%= paginate @ratings %></div>
   </div>
 </div>

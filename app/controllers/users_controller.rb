@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     if @user && @user.save
       session[:id] = @user.id
       redirect_to @user
-      # redirect to 'login'
     else
       render 'new'
     end

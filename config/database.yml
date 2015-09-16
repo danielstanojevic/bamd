@@ -40,4 +40,4 @@ production:
   <<: *default
   database: bamd_production
   username: bamd
-  password: <%= ENV['BAMD_DATABASE_PASSWORD'] %>
+  password: <%= ENV['SECRET_KEY_BASE'] %>

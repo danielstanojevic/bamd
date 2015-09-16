@@ -5,6 +5,9 @@ class Game < ActiveRecord::Base
   has_many :game_mechanics
   has_many :mechanics, through: :game_mechanics
 
+  # added for kaminari pagination
+  paginates_per 50
+
   def avg_user_rating
     rating_sum = 0
     if self.ratings.empty?

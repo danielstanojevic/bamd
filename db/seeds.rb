@@ -86,5 +86,3 @@
   d.mechanics << cb
   bamd.mechanics << coop
   bamd.mechanics << cb
-
-

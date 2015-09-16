@@ -5,6 +5,13 @@
     <% if current_user.is_owner?(@game) %> <i id="gold_star" class="fa fa-star fa-5x"></i> <% end %>
     <% end %>
   </h1>
+    <div>
+      <% if @game.owners.include?(current_user) %>
+        <td class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(@game, @game.purchases.find_by(owner_id: current_user.id)), method: :delete %></td>
+      <% else %>
+        <td class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(@game), method: :post %></td>
+      <% end %>
+    </div>
     <h2>Description:</h2>
     <h3><%= @game.description %></h3>
   </div>
@@ -51,27 +58,36 @@
   <br>
   <div id="review-container">
     <h2>REVIEWS!</h2>
+    <% if current_user != nil  %>
+    <div id="review-form">
+      <form class="new_rating" id="new_rating" action="/games/<%= @game.id %>/ratings" accept-charset="UTF-8" method="post">
+      <fieldset class="rating">
+        <legend>Rate this game!</legend>
+        <input type="radio" id="star5" name="rating[stars]" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+        <input type="radio" id="star4" name="rating[stars]" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+        <input type="radio" id="star3" name="rating[stars]" value="3" /><label for="star3" title="Meh">3 stars</label>
+        <input type="radio" id="star2" name="rating[stars]" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+        <input type="radio" id="star1" name="rating[stars]" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+        <!-- <label for="rating_comment">Comment</label><br> -->
+        <!-- <input type = "textarea" name="rating[comment]" id="rating_comment"> -->
+        <textarea id="rating_comment" name="rating[comment]" cols="45" rows="10" placeholder="Write your review here!"></textarea>
+      </fieldset><br>
+        <input type="submit" value="Add rating"/>
+      </form>
+    </div>
+    <% end %>
+    <br>
+    <br>
+
     <% @game.ratings.each do |rating| %>
       <% author = rating.get_author%>
       <div class="review">
-       <h4 class="rating-stars">Rating: <%= stars_to_s(rating.stars).html_safe %></h4>
-        <h3>Review: <%= rating.comment %></h3>
-        <h4>Author: <%= link_to "#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x "></i> <% end %> </h4>
+       <h4 class="rating-stars"> <%= stars_to_s(rating.stars).html_safe %></h4>
+        <h3><%= rating.comment %></h3>
+        <h4><%= link_to "#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x "></i> <% end %> </h4>
 
       </div>
-
     <%end%>
+    <div class="paginate"><%= paginate @ratings %></div>
   </div>
-  <% if current_user != nil  %>
-  <div id="review-form">
-    <%=form_for [@game, @rating] do |f|  %>
-    <%=f.label :stars  %>
-    <%=f.select :stars, (0..5) %><br>
-
-    <%=f.label :comment  %>
-    <%=f.text_field :comment  %><br>
-    <%=f.submit %>
-    <% end %>
-  </div>
-  <% end %>
 </div>

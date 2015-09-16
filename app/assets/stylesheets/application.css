@@ -14,8 +14,8 @@
  *= require_tree .
  *= require_self
  */
-
-/** {
+/*
+* {
 	border: 1px solid gray;
 }*/
 
@@ -25,37 +25,35 @@
 	border: 2px solid black;
 }*/
 
-
-
-#review-form {
-  height: 10%;
-  width: 45%
+.nav.nav-pills {
+  background-color: gold;
+  font-style: bold;
+  border-radius: none;
 }
 
-.fa {
-  font-size: 3em;
+.nav.nav-pills a:hover{
+  background-color: #337ab7;
+  font-style: bold;
   color: gold;
 }
 
-#gold-star {
-  height: 40em;
-  color: gold;
+.search-bar {
+  text-align: right;
+  margin-top: 2%;
 }
 
 #games-index {
-	font-size: 1.5em;
-	/*text-align: center;*/
+	font-size: 1.25em;
+  margin: auto;
 }
 
 th {
-  padding-top: 10px;
+  padding: 10px;
 	/*	text-align: center;*/
 }
 
 #games-index td {
-	padding: 20px;
-  padding-top: 10px;
-
+	padding: 10px;
 }
 
 .owner-star a{
@@ -70,25 +68,19 @@ ul {
   margin-left: auto;
 }
 .game-table {
-  border: 1px solid black;
   width: 500px;
-  background-color: #ecf0f1;
-  border-radius: 10%;
   margin: auto;
-}
-
-#head {
-  margin-left: 430px;
 }
 
 .heading {
-  text-align: center;
   margin: auto;
+  text-align: center;
+  padding-bottom: 2%;
 }
 
 
 .rating {
-    float:left;
+  float:left;
 }
 
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
@@ -110,7 +102,7 @@ ul {
     font-size:200%;
     line-height:1.2;
     color:#ddd;
-    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+    /*text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);*/
 }
 
 .rating:not(:checked) > label:before {
@@ -119,13 +111,13 @@ ul {
 
 .rating > input:checked ~ label {
     color: #f70;
-    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+    /*text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);*/
 }
 
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label {
     color: gold;
-    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+    /*text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);*/
 }
 
 .rating > input:checked + label:hover,
@@ -134,11 +126,11 @@ ul {
 .rating > input:checked ~ label:hover ~ label,
 .rating > label:hover ~ input:checked ~ label {
     color: #ea0;
-    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+    /*text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);*/
 }
 
 .rating > label:active {
     position:relative;
-    top:2px;
+    /*top:2px;*/
     left:2px;
 }

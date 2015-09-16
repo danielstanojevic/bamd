@@ -2,10 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.mechanic-center {
+
+#mechanic-ul {
+	text-indent: 0;
+  list-style: none;
   text-align: center;
   margin: auto;
+  font-size: 1.25em;
+  padding: 0;
 }
-#mechanic-ul {
-  list-style: none;
+
+#mechanic-item {
+	padding: 1%;
 }

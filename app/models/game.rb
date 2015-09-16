@@ -5,6 +5,8 @@ class Game < ActiveRecord::Base
   has_many :game_mechanics
   has_many :mechanics, through: :game_mechanics
 
+
+
   # added for kaminari pagination
   paginates_per 50
 

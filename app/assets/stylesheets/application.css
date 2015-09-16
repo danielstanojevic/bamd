@@ -81,6 +81,11 @@ ul {
   margin-left: 430px;
 }
 
+.heading {
+  text-align: center;
+  margin: auto;
+}
+
 
 .rating {
     float:left;

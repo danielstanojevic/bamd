@@ -2,52 +2,81 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+#meta-game-container {
+  float: left;
+  width: 50%;
+}
+
+#game-review-container {
+  float: right;
+  width: 35%;
+  
+}
+
+#review-form {
+  height: 10%;
+  width: 45%;
+  border: none;
+}
+
+legend {
+  margin-bottom: 0;
+}
+
+.fa {
+  color: gold;
+}
+
+game.title {
+  color: #23527c;
+}
+
+.list-reviews:nth-child(2) {
+  border-top: 1px solid lightgray;
+}
+
+.list-reviews {
+  border-bottom: 1px solid lightgray;
+}
+
 #game-name {
   margin-top: 100px;
   display: inline-block;
-  border: 1px solid black;
   width: 400px;
-  background-color: #ecf0f1;
-
 }
 
-#picture {
-  display: inline-block;
-  margin-left: 600px;
-
-  margin-top: -175px;
+#game-picture {
+  max-width: 80%;
+  margin: 0;
 }
 
 #mechanics {
-  border: 1px solid black;
   max-width: 400px;
-  background-color: #ecf0f1;
+  font-size: 1.25em;
 }
 
 .review {
-  border: 1px solid black;
   padding-left: 10px;
 }
 
-#scores {
-
-  width: 400px;
-  background-color: #ecf0f1;
-
-  }
-
-#owner-friends {
-  border: 1px solid black;
-  width: 400px;
-  background-color: #ecf0f1;
-
+#review-form {
+  margin-top: 10%;
 }
 
+#scores {
+  width: 400px;
+}
+
+#owner-friends {
+  width: 400px;
+}
 
 #mechanic-search {
   margin-top: 10px;
   margin: auto;
 }
+
 #games-search {
   margin-top: 10px;
   margin-left: 475px;

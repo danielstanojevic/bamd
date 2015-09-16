@@ -1,90 +1,83 @@
-<div class="container">
-  <div id="game-name">
-    <h1><%= @game.name %>
-      <% if current_user != nil %>
-    <% if current_user.is_owner?(@game) %> <i id="gold_star" class="fa fa-star fa-5x"></i> <% end %>
-    <% end %>
-  </h1>
-    <div>
-      <% if @game.owners.include?(current_user) %>
-        <td class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(@game, @game.purchases.find_by(owner_id: current_user.id)), method: :delete %></td>
+<div class="game-show-container">
+  
+  <div id="game-header">
+      <h1 class="text-primary"> <%= @game.name %>
+        <% if @game.owners.include?(current_user) %>
+        <span class="owner-star"><%= link_to "&#9733".html_safe, game_purchase_path(@game, @game.purchases.find_by(owner_id: current_user.id)), method: :delete %></span>
       <% else %>
-        <td class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(@game), method: :post %></td>
+        <span class="owner-star"><%= link_to "&#9734".html_safe, game_purchases_path(@game), method: :post %> </span>
+      <% end %>
+      </h1>
+      <p><%= @game.description %></p>
+    </div>
+
+  <div id="meta-game-container">
+    <div>
+      <img id="game-picture" src= <%=@game.get_img_file%>>
+    </div> 
+
+    <div id="game-scores">
+      <h4>Community <%= stars_to_s(@game.avg_user_rating).html_safe %></h4>
+        <% if current_user && friend_average = current_user.get_friend_avg(@game) == nil %>
+      <h4>Friend <%=stars_to_s(friend_average).html_safe %></h4>
+        <% end %>
+    </div>
+  
+    <div id="game-mechanics">
+      <h3>Mechanics:</h3>
+        <% @game.mechanics.each do |mechanic| %>
+      <p> <%=link_to "#{mechanic.description}", mechanic_path(mechanic)%> </p>
+        <% end %>
+    </div>
+
+    <div id="game-owner-friends">
+      <% if current_user %>
+        <% unless current_user.friend_owners(@game).empty? %>
+          <h3>Friends Who Own This Game:</h3>
+          <ul>
+            <% current_user.friend_owners(@game).each do |friend| %>
+              <li><%= link_to "#{friend.username}",user_path(friend) %><li>
+            <%end%>
+          </ul>
+        <% else %>
+          <h3>No Friends Own This Game</h3>
+        <% end %>
+      <% else %>
+        <h3>Login to view friends who own this game!</h3>
       <% end %>
     </div>
-    <h2>Description:</h2>
-    <h3><%= @game.description %></h3>
-  </div>
-  <div id="picture">
-  <img src= <%=@game.get_img_file%>>
-    <div id="scores">
-
-
-    <h3>Community Score: <%= stars_to_s(@game.avg_user_rating).html_safe %></h3>
-    <% if current_user != nil %>
-    <h3>Friend Score: <%=stars_to_s(current_user.get_friend_avg(@game)).html_safe  %></h3>
-    <% end %>
   </div>
 
-  </div>
-  <div id="mechanics">
-    <h2>Mechanics:</h2>
-      <% @game.mechanics.each do |mechanic| %>
-    <h4> <%=link_to "#{mechanic.description}", mechanic_path(mechanic)%> </h4>
-      <% end %>
-  </div>
-
-  <br>
-
-   <div id="owner-friends">
-
-    <% if current_user && !current_user.friend_owners(@game).empty? %>
-     <h3>Friends Who Own This Game:</h3>
-      <% current_user.friend_owners(@game).each do |friend| %>
-         <%= link_to "#{friend.username}",user_path(friend) %>
-        <%end%>
-    <% elsif current_user.friend_owners(@game).empty? %>
-        <h3>No Friends Own This Game</h3>
-    <% else %>
-      <h3>Login to view friends who own this game!</h3>
-    <% end %>
-  </div>
-  <br>
-
-
-  <br>
-  <div id="review-container">
-    <h2>REVIEWS!</h2>
-    <% if current_user != nil  %>
-    <div id="review-form">
-      <form class="new_rating" id="new_rating" action="/games/<%= @game.id %>/ratings" accept-charset="UTF-8" method="post">
-      <fieldset class="rating">
-        <legend>Rate this game!</legend>
-        <input type="radio" id="star5" name="rating[stars]" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-        <input type="radio" id="star4" name="rating[stars]" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-        <input type="radio" id="star3" name="rating[stars]" value="3" /><label for="star3" title="Meh">3 stars</label>
-        <input type="radio" id="star2" name="rating[stars]" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-        <input type="radio" id="star1" name="rating[stars]" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-        <!-- <label for="rating_comment">Comment</label><br> -->
-        <!-- <input type = "textarea" name="rating[comment]" id="rating_comment"> -->
-        <textarea id="rating_comment" name="rating[comment]" cols="45" rows="10" placeholder="Write your review here!"></textarea>
-      </fieldset><br>
-        <input type="submit" value="Add rating"/>
-      </form>
-    </div>
-    <% end %>
-    <br>
-    <br>
-
-    <% @game.ratings.each do |rating| %>
+  <div id="game-review-container">
+    <h2>Reviews</h2>
+      <% @game.ratings.each do |rating| %>
       <% author = rating.get_author%>
-      <div class="review">
-       <h4 class="rating-stars"> <%= stars_to_s(rating.stars).html_safe %></h4>
-        <h3><%= rating.comment %></h3>
-        <h4><%= link_to "#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star fa-2x "></i> <% end %> </h4>
-
+      <div class="list-reviews">
+        <p class="rating-stars"> <%= stars_to_s(rating.stars).html_safe %>  <%= rating.comment %></p>
+        <p><%= link_to "-#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star"></i> <% end %> </p>
       </div>
-    <%end%>
+      <%end%>
+    
+    <div id="review-form"></div>
+      <% if current_user  %>
+        <div id="review-form">
+          <form class="new_rating" id="new_rating" action="/games/<%= @game.id %>/ratings" accept-charset="UTF-8" method="post">
+          <fieldset class="rating">
+            <legend>Add your rating</legend>
+            <input type="radio" id="star5" name="rating[stars]" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+            <input type="radio" id="star4" name="rating[stars]" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+            <input type="radio" id="star3" name="rating[stars]" value="3" /><label for="star3" title="Meh">3 stars</label>
+            <input type="radio" id="star2" name="rating[stars]" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+            <input type="radio" id="star1" name="rating[stars]" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+            <!-- <label for="rating_comment">Comment</label><br> -->
+            <!-- <input type = "textarea" name="rating[comment]" id="rating_comment"> -->
+            <textarea id="rating_comment" name="rating[comment]" cols="45" rows="10" placeholder="Write your review here!"></textarea>
+          </fieldset><br>
+            <input type="submit" value="Add rating"/>
+          </form>
+        </div>
+      <% end %>
+    
     <div class="paginate"><%= paginate @ratings %></div>
   </div>
 </div>

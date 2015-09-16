@@ -1,12 +1,12 @@
 <div>
-  <div id="games-search">
+  <div class="search-bar">
     <%= form_tag(games_path, :method => "get", id: "search-form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Find Games!" %>
     <%= submit_tag "Search", :name => nil %>
     <% end %>
   </div>
 
-  <h1 class="heading">Popular Games!</h1>
+  <h1 class="heading">Popular Games</h1>
   <div class="game-table">
     <table id="games-index">
       <tr>

@@ -1,51 +1,58 @@
 <div class="profile-container">
+ 
  <% if current_user %>
+  
   <% if @user == current_user || current_user.friends.include?(@user) %>
-  	<h1><%=@user.username%>'s Page</h1>
-	<div class="user-purchases">
-    <h2>Game List</h2>
-		<% if @user.purchases.count > 0 %>
-      <ul>
-        <% @user.purchases.each do |purchase| %>
-          <li><%= link_to "#{purchase.game.name}", game_path(purchase.game_id) %> <%= stars_to_s(@user.review(purchase.game).stars).html_safe unless @user.review(purchase.game)==nil %> <%= @user.review(purchase.game).comment unless @user.review(purchase.game)==nil %></li>
+  	<h1 class="text-primary"><%=@user.username%>'s Page</h1>
+    	<div class="user-purchases">
+        <h3>Game List</h3>
+    		
+        <% if @user.purchases.count > 0 %>
+          <ul>
+            <% @user.purchases.each do |purchase| %>
+              <li><%= link_to "#{purchase.game.name}", game_path(purchase.game_id) %> 
+                <% unless @user.review(purchase.game)==nil %>
+                  <%= stars_to_s(@user.review(purchase.game).stars).html_safe %>
+                  <%= @user.review(purchase.game).comment %></li>
+                <% end %>
+            <% end %>
+          </ul>
+        
+        <% else %>
+          <% if current_user == @user %>
+          <p>Add the <%= link_to 'games', games_path%> you own to your profile page!</p>
+          <% else %>
+          <p>Tell <%= @user.username %> they need games!</p>
+          <% end %>
         <% end %>
-      </ul>
-    <% else %>
-      <% if current_user == @user %>
-      <p>Add the <%= link_to 'games', games_path%> you own to your profile page!</p>
-      <% else %>
-      <p>Tell <%= @user.username %> they need games!</p>
-      <% end %>
-    <% end %>
-	</div>
+    	</div>
+  <% end %>
 
   <% if @user == current_user %>
     <div class="user-friendships">
-      <h2>My Friends</h2>
-      <% if current_user.confirmed_friendships.empty? %>
-        <h2>YOU AINT GOT NO FRIENDS</h2>
-        <% else %>
-      <ul>
-        <% current_user.confirmed_friendships.each do |friendship| %>
-          <li><%= link_to "#{friendship.receiver.username}", user_path(friendship.receiver) %></li>
-        <% end %>
-      </ul>
+      <% unless current_user.confirmed_friendships.empty? %>
+        <h3>My Friends</h3>
+        <ul>
+          <% current_user.confirmed_friendships.each do |friendship| %>
+            <li><%= link_to "#{friendship.receiver.username}", user_path(friendship.receiver) %></li>
+          <% end %>
+        </ul>
       <% end %>
-      <% if !current_user.friend_requests.empty? %>
-      <h2>Friend Requests</h2>
-      <ul>
-        <% current_user.friend_requests.each do |request| %>
-          <li><%= request.requester.username %>  <%= link_to "Accept", friendship_path(request), method: :put %></li>
-        <% end %>
-      </ul>
+      <% unless current_user.friend_requests.empty? %>
+        <h3>Friend Requests</h3>
+        <ul>
+          <% current_user.friend_requests.each do |request| %>
+            <li><%= link_to "#{request.requester.username}", user_path(request.requester) %>  <%= link_to "Accept", friendship_path(request), method: :put %></li>
+          <% end %>
+        </ul>
       <% end %>
-      <% if !current_user.pending_requests.empty? %>
-      <h2>Pending Requests</h2>
-      <ul>
-        <% current_user.pending_requests.each do |request| %>
-          <li><%= request.receiver.username %></li>
-        <% end %>
-      </ul>
+      <% unless current_user.pending_requests.empty? %>
+        <h3>Pending Requests</h3>
+        <ul>
+          <% current_user.pending_requests.each do |request| %>
+            <li><%= link_to "#{request.receiver.username}", user_path(request.receiver) %></li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
 
@@ -55,13 +62,15 @@
   		<%= submit_tag "Search", :name => nil %>
   		<% end %>
   	</div>
-  <% end %>
+  
   <% else %>
-  <h1><%=@user.username%>'s Page</h1>
-  <h3><%= link_to "Send #{@user.username} a friend request!", friendships_path(:to_id => @user), :method => :post %><h3>
-
+    <% unless current_user.friends.include?(@user) %>
+      <% if current_user.pending_requests.find_by(to_id: @user.id) %>
+        <h3> Your friend request to <%= "#{@user.username}" %> has been sent!<h3>
+      <% else %>
+        <h3> <%= link_to "Send #{@user.username} a friend request!", friendships_path(:to_id => @user), :method => :post %> <h3>
+      <% end %>
+    <% end %>
   <% end %>
-  <% else %>
-  <h1>LOGIN TO VIEW USERS</h1>
-  <% end %>
+<% end %>
 </div>

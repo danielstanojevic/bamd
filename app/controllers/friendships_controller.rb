@@ -13,6 +13,7 @@ class FriendshipsController < ApplicationController
   def update
     @friendship = Friendship.find(params[:id])
     @friendship.update_attribute(:confirmed, true)
+    
     Friendship.create(from_id: @friendship.to_id, to_id: @friendship.from_id, confirmed: true)
     redirect_to current_user
   end

@@ -55,8 +55,8 @@
       <% @ratings.each do |rating| %>
       <% author = rating.get_author %>
       <div class="list-reviews">
-        <p class="rating-stars"> <%= stars_to_s(rating.stars).html_safe %>  <%= rating.comment %></p>
-        <p><%= link_to "-#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star"></i> <% end %> </p>
+        <p class="rating-stars"> <%= stars_to_s(rating.stars).html_safe %>  <br><%= rating.comment %></p>
+        <p><%= link_to "-#{author.username}", user_path(author)%> <% if author.is_owner?(@game) %> <i class="fa fa-star"></i> <br><%= rating.created_at.strftime("%m-%d-%Y") %><% end %> </p>
       </div>
       <%end%>
       <div class="paginate"><%= paginate @ratings %></div>

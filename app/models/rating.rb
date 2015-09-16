@@ -2,6 +2,8 @@ class Rating < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   belongs_to :game
 
+  validates :author_id, :game_id, :stars, :comment, presence: true
+
   # added for kaminari pagination
   paginates_per 50
 
